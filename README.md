@@ -1,62 +1,122 @@
-# Astro Starter Kit: Blog
+# Libertaria Blog
 
-```sh
-npm create astro@latest -- --template blog
+> Sovereign; Kinetic; Anti-Fragile.
+
+**Domain:** libertaria.app  
+**Source:** Local Git → Cloudflare Pages  
+**Stack:** Astro + Cloudflare Adapter
+
+---
+
+## Features
+
+- ✅ **Markdown-based**: Write posts in `.md` files
+- ✅ **Date-based filenames**: `YYYY-MM-DD-slug.md` format
+- ✅ **Automatic sorting**: Posts sorted by filename date
+- ✅ **Tags support**: Categorize posts with frontmatter tags
+- ✅ **Draft mode**: Hide unfinished posts with `draft: true`
+- ✅ **RSS feed**: Auto-generated at `/rss.xml`
+- ✅ **Sitemap**: Auto-generated for SEO
+- ✅ **Cloudflare-ready**: Static output optimized for Cloudflare Pages
+
+---
+
+## Quick Start
+
+### 1. Development
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### 2. Create a new post
 
-Features:
+```bash
+# Create file: src/content/blog/2024-02-03-my-post.md
+---
+title: 'My Post Title'
+description: 'Brief description'
+tags: ['libertaria', 'tech']
+draft: false
+---
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+Your content here...
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### 3. Build
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+npm run build
+# Output: dist/
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+---
 
-Any static assets, like images, can be placed in the `public/` directory.
+## File Naming Convention
 
-## 🧞 Commands
+```
+src/content/blog/
+├── 2024-01-15-hello-world.md
+├── 2024-02-03-libertaria-stack.md
+└── 2024-03-10-gql-parser.md
+```
 
-All commands are run from the root of the project, from a terminal:
+**Format:** `YYYY-MM-DD-slug.md`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- Date is extracted from filename for sorting
+- Slug becomes the URL: `/blog/2024-01-15-hello-world/`
+- Fallback to frontmatter `pubDate` if filename has no date
 
-## 👀 Want to learn more?
+---
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Frontmatter Schema
 
-## Credit
+```yaml
+---
+title: string           # Required
+description: string     # Required
+pubDate: date          # Optional (fallback to filename)
+updatedDate: date      # Optional
+heroImage: string      # Optional (path to image)
+tags: string[]         # Optional (array of tags)
+draft: boolean         # Optional (default: false)
+---
+```
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+---
+
+## Deployment
+
+### Cloudflare Pages
+
+1. Connect Git repository to Cloudflare Pages
+2. Build command: `npm run build`
+3. Output directory: `dist`
+4. Deploy!
+
+---
+
+## Git Branches
+
+```
+main        → Production (libertaria.app)
+develop     → Active development (current)
+unstable    → Integration/testing
+lts/v*      → Long-term support
+```
+
+---
+
+## Tech Stack Research
+
+See `docs/research-report.html` for comprehensive analysis of:
+- Astro vs Hugo vs Nim-based solutions
+- Cloudflare Pages vs Workers
+- HTMX + picoCSS evaluation
+
+---
+
+*Forge burns bright. The Exit is being built.*
+
+⚡️
