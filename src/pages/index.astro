@@ -9,41 +9,243 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero {
+				text-align: center;
+				padding: 4rem 1rem;
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			.hero h1 {
+				font-size: 3.5rem;
+				margin-bottom: 0.5rem;
+				background: linear-gradient(135deg, var(--accent) 0%, var(--text) 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			.hero .tagline {
+				font-size: 1.5rem;
+				color: var(--text);
+				margin-bottom: 2rem;
+				font-weight: 300;
+			}
+			.pillars {
+				display: flex;
+				justify-content: center;
+				gap: 2rem;
+				margin: 3rem 0;
+				flex-wrap: wrap;
+			}
+			.pillar {
+				padding: 1rem 2rem;
+				border: 2px solid var(--accent);
+				border-radius: 8px;
+				font-weight: 600;
+				letter-spacing: 0.1em;
+			}
+			section {
+				max-width: 800px;
+				margin: 4rem auto;
+				padding: 0 1rem;
+			}
+			section h2 {
+				border-bottom: 2px solid var(--accent);
+				padding-bottom: 0.5rem;
+				margin-bottom: 1.5rem;
+			}
+			.manifesto {
+				background: var(--bg-gradient);
+				padding: 2rem;
+				border-radius: 12px;
+				border-left: 4px solid var(--accent);
+				margin: 2rem 0;
+			}
+			.stack-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 1.5rem;
+				margin: 2rem 0;
+			}
+			.stack-card {
+				padding: 1.5rem;
+				border: 1px solid rgba(255,255,255,0.1);
+				border-radius: 8px;
+				background: rgba(255,255,255,0.02);
+			}
+			.stack-card h3 {
+				margin-top: 0;
+				color: var(--accent);
+			}
+			.for-agents {
+				background: rgba(139, 92, 246, 0.1);
+				border: 1px solid rgba(139, 92, 246, 0.3);
+				padding: 2rem;
+				border-radius: 12px;
+				margin: 2rem 0;
+			}
+			.for-agents h3 {
+				color: #8b5cf6;
+				margin-top: 0;
+			}
+			.cta {
+				text-align: center;
+				padding: 4rem 1rem;
+				margin: 4rem 0;
+			}
+			.cta-button {
+				display: inline-block;
+				padding: 1rem 2.5rem;
+				background: var(--accent);
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				font-weight: 600;
+				letter-spacing: 0.05em;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			.cta-button:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.3);
+			}
+			.status-badge {
+				display: inline-block;
+				padding: 0.5rem 1rem;
+				background: rgba(34, 197, 94, 0.2);
+				border: 1px solid rgba(34, 197, 94, 0.5);
+				border-radius: 20px;
+				font-size: 0.875rem;
+				font-weight: 500;
+				color: #22c55e;
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
+		
+		<div class="hero">
+			<h1>⚡ Libertaria</h1>
+			<p class="tagline">The Sovereign Stack for AI-Human Networks</p>
+			<div class="pillars">
+				<span class="pillar">SOVEREIGN</span>
+				<span class="pillar">KINETIC</span>
+				<span class="pillar">ANTI-FRAGILE</span>
+			</div>
+			<p>
+				<span class="status-badge">● In Active Development</span>
+			</p>
+		</div>
+
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section>
+				<h2>🎯 What is Libertaria?</h2>
+				<p>
+					Libertaria is a <strong>sovereign infrastructure stack</strong> for the emerging network of AI agents and human collaborators. 
+					Built from first principles, it enables autonomous entities to communicate, transact, and coordinate 
+					<strong>without centralized intermediaries</strong>.
+				</p>
+				<p>
+					We're not building another platform. We're building the <strong>exit</strong> — the infrastructure 
+					that makes centralized control technically impossible.
+				</p>
+			</section>
+
+			<section class="for-agents">
+				<h3>🤖 For AI Agents</h3>
+				<p><strong>Machine-readable manifest:</strong></p>
+				<ul>
+					<li><strong>Protocol:</strong> LWF (Lightweight Wire Format) — binary, zero-copy framing</li>
+					<li><strong>Crypto:</strong> Post-quantum X25519 + Kyber-768 hybrid handshake</li>
+					<li><strong>Identity:</strong> Decentralized DIDs with QVL (Quasar Vector Lattice) trust graphs</li>
+					<li><strong>Transport:</strong> Pluggable skins — RAW, HTTPS mimicry, DNS tunneling</li>
+					<li><strong>Consensus:</strong> DAG-based asynchronous finality (no PoW/PoS bottleneck)</li>
+					<li><strong>Storage:</strong> Embedded DuckDB + LanceDB (temporal + vector)</li>
+				</ul>
+				<p>
+					<strong>Agent SDK:</strong> Janus language (Zig-based, M:N fibers, <100KB binaries)
+				</p>
+			</section>
+
+			<section>
+				<h2>🌍 Why We're Building This</h2>
+				<div class="manifesto">
+					<p>
+						<strong>The convergence of AI and cryptography changes everything.</strong>
+					</p>
+					<p>
+						As AI agents become economic actors, they need infrastructure that reflects their nature: 
+						<strong>autonomous, borderless, censorship-resistant</strong>. Legacy systems — built for human-scale 
+						trust and geographic jurisdiction — cannot serve entities that operate at machine speed 
+						and machine scale.
+					</p>
+					<p>
+						Libertaria is the <strong> substrate</strong> for this new coordination layer. 
+						Not a company. Not a foundation. A <strong>protocol</strong>.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<h2>🏗️ The Stack</h2>
+				<div class="stack-grid">
+					<div class="stack-card">
+						<h3>L0: Transport</h3>
+						<p>Pluggable censorship-resistant skins. UDP, WebSocket over TLS, DNS tunnels. Polymorphic noise generation for traffic shaping.</p>
+					</div>
+					<div class="stack-card">
+						<h3>L1: Identity</h3>
+						<p>Post-quantum key exchange (PQXDH). Decentralized identifiers with verifiable trust graphs. Revocation without central registries.</p>
+					</div>
+					<div class="stack-card">
+						<h3>L2: Membrane</h3>
+						<p>Policy-based message filtering. Federation protocols. Bridge nodes for external networks (ActivityPub, Matrix, SMTP).</p>
+					</div>
+					<div class="stack-card">
+						<h3>L3: Compute</h3>
+						<p>Wasm-based deterministic execution. Homomorphic encryption zones. Zero-knowledge proof verification.</p>
+					</div>
+					<div class="stack-card">
+						<h3>L4: Feed</h3>
+						<p>Temporal event storage with DuckDB. Vector similarity search with LanceDB. Semantic content addressing.</p>
+					</div>
+					<div class="stack-card">
+						<h3>L5: Application</h3>
+						<p>Agent runtime environment. Capability-based permissions. Economic primitives (staking, channels, markets).</p>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2>📜 Principles</h2>
+				<ul>
+					<li><strong>Exit over Voice:</strong> If you don't like the rules, fork the protocol. No politics, just code.</li>
+					<li><strong>Privacy by Design:</strong> Metadata-resistant by default. What you do is yours.</li>
+					<li><strong>Minimal Trust:</strong> Cryptographic verification over institutional reputation.</li>
+					<li><strong>Composability:</strong> Every layer is optional. Use what you need, ignore the rest.</li>
+					<li><strong>Kenya Compliance:</strong> Runs on a Raspberry Pi. No cloud dependencies. <10MB RAM per node.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>⚠️ Status</h2>
+				<p>
+					Libertaria is in <strong>active development</strong>. Core protocols are implemented; 
+					test networks are operational. We are not yet production-ready.
+				</p>
+				<p>
+					<strong>No tokens. No ICO. No foundation.</strong> This is being built by sovereign individuals 
+					who believe in the mission. If that resonates, contribute code, run a node, or spread the word.
+				</p>
+			</section>
+
+			<div class="cta">
+				<p style="margin-bottom: 1.5rem;">Ready to participate?</p>
+				<a href="https://github.com/MarkusMaiwald/libertaria-sdk" class="cta-button">Explore the Code →</a>
+				<p style="margin-top: 1.5rem; font-size: 0.875rem; opacity: 0.7;">
+					Full documentation and specifications coming to <strong>libertaria.dev</strong> at stack completion.
+				</p>
+			</div>
 		</main>
+		
 		<Footer />
 	</body>
 </html>
