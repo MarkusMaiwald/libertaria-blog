@@ -4,43 +4,51 @@
 
 **Domain:** libertaria.app  
 **Source:** Local Git → Cloudflare Pages  
-**Goal:** Static blog with markdown files, date-based sorting, hashtag categorization
+**Stack:** Astro + Cloudflare Adapter
 
 ---
 
-## Requirements
+## Features
 
-- **Easy setup**: Throw markdown files with date in filename → site renders
-- **Markdown**: Frontmatter support (YAML)
-- **Date sorting**: Filename-based (`YYYY-MM-DD-slug.md`)
-- **Hashtags**: Categorization via tags/categories
-- **Hosting**: Cloudflare Pages (free tier)
-- **Stack**: Astro (recommended) or Hugo
-
----
-
-## Tech Stack Evaluation
-
-See `research-report.html` for comprehensive analysis.
-
-| Option | Recommendation | Status |
-|--------|---------------|--------|
-| **Astro** | ✅ Primary choice | Type-safe, modern, easy |
-| **Hugo** | ✅ Alternative | Fastest, mature ecosystem |
-| **Nimja + HappyX** | ⚠️ Research project | No blog examples found |
-| **HTMX + picoCSS + Hmpl.js** | ❌ Incomplete | Missing content pipeline |
-| **Hono + Marked** | ✅ Lightweight | ~300 lines, full control |
+- ✅ **Markdown-based**: Write posts in `.md` files
+- ✅ **Date-based filenames**: `YYYY-MM-DD-slug.md` format
+- ✅ **Automatic sorting**: Posts sorted by filename date
+- ✅ **Tags support**: Categorize posts with frontmatter tags
+- ✅ **Draft mode**: Hide unfinished posts with `draft: true`
+- ✅ **RSS feed**: Auto-generated at `/rss.xml`
+- ✅ **Sitemap**: Auto-generated for SEO
+- ✅ **Cloudflare-ready**: Static output optimized for Cloudflare Pages
 
 ---
 
-## Git Branching Strategy
+## Quick Start
 
+### 1. Development
+
+```bash
+npm install
+npm run dev
 ```
-main        → Production (libertaria.app)
-unstable    → Staging/integration
-lts/v*      → Long-term support versions
-develop     → Active development
-feature/*   → Feature branches
+
+### 2. Create a new post
+
+```bash
+# Create file: src/content/blog/2024-02-03-my-post.md
+---
+title: 'My Post Title'
+description: 'Brief description'
+tags: ['libertaria', 'tech']
+draft: false
+---
+
+Your content here...
+```
+
+### 3. Build
+
+```bash
+npm run build
+# Output: dist/
 ```
 
 ---
@@ -48,23 +56,31 @@ feature/*   → Feature branches
 ## File Naming Convention
 
 ```
-content/
-├── blog/
-│   ├── 2024-01-15-hello-world.md
-│   ├── 2024-02-03-libertaria-stack.md
-│   └── 2024-03-10-gql-parser.md
-└── pages/
-    ├── about.md
-    └── contact.md
+src/content/blog/
+├── 2024-01-15-hello-world.md
+├── 2024-02-03-libertaria-stack.md
+└── 2024-03-10-gql-parser.md
 ```
 
-Frontmatter example:
+**Format:** `YYYY-MM-DD-slug.md`
+
+- Date is extracted from filename for sorting
+- Slug becomes the URL: `/blog/2024-01-15-hello-world/`
+- Fallback to frontmatter `pubDate` if filename has no date
+
+---
+
+## Frontmatter Schema
+
 ```yaml
 ---
-title: "Hello World"
-date: 2024-01-15
-tags: ["intro", "libertaria"]
-draft: false
+title: string           # Required
+description: string     # Required
+pubDate: date          # Optional (fallback to filename)
+updatedDate: date      # Optional
+heroImage: string      # Optional (path to image)
+tags: string[]         # Optional (array of tags)
+draft: boolean         # Optional (default: false)
 ---
 ```
 
@@ -72,21 +88,32 @@ draft: false
 
 ## Deployment
 
-**Cloudflare Pages:**
-1. Connect Git repository
+### Cloudflare Pages
+
+1. Connect Git repository to Cloudflare Pages
 2. Build command: `npm run build`
-3. Output directory: `dist/`
-4. Automatic deployments on push
+3. Output directory: `dist`
+4. Deploy!
 
 ---
 
-## Project Status
+## Git Branches
 
-- [x] Tech stack research
-- [ ] Initialize Astro project
-- [ ] Set up Cloudflare Pages
-- [ ] Design theme/layout
-- [ ] First blog post
+```
+main        → Production (libertaria.app)
+develop     → Active development (current)
+unstable    → Integration/testing
+lts/v*      → Long-term support
+```
+
+---
+
+## Tech Stack Research
+
+See `docs/research-report.html` for comprehensive analysis of:
+- Astro vs Hugo vs Nim-based solutions
+- Cloudflare Pages vs Workers
+- HTMX + picoCSS evaluation
 
 ---
 
