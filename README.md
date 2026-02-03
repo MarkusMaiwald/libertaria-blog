@@ -1,95 +1,62 @@
-# Libertaria Blog
+# Astro Starter Kit: Blog
 
-> Sovereign; Kinetic; Anti-Fragile.
-
-**Domain:** libertaria.app  
-**Source:** Local Git → Cloudflare Pages  
-**Goal:** Static blog with markdown files, date-based sorting, hashtag categorization
-
----
-
-## Requirements
-
-- **Easy setup**: Throw markdown files with date in filename → site renders
-- **Markdown**: Frontmatter support (YAML)
-- **Date sorting**: Filename-based (`YYYY-MM-DD-slug.md`)
-- **Hashtags**: Categorization via tags/categories
-- **Hosting**: Cloudflare Pages (free tier)
-- **Stack**: Astro (recommended) or Hugo
-
----
-
-## Tech Stack Evaluation
-
-See `research-report.html` for comprehensive analysis.
-
-| Option | Recommendation | Status |
-|--------|---------------|--------|
-| **Astro** | ✅ Primary choice | Type-safe, modern, easy |
-| **Hugo** | ✅ Alternative | Fastest, mature ecosystem |
-| **Nimja + HappyX** | ⚠️ Research project | No blog examples found |
-| **HTMX + picoCSS + Hmpl.js** | ❌ Incomplete | Missing content pipeline |
-| **Hono + Marked** | ✅ Lightweight | ~300 lines, full control |
-
----
-
-## Git Branching Strategy
-
-```
-main        → Production (libertaria.app)
-unstable    → Staging/integration
-lts/v*      → Long-term support versions
-develop     → Active development
-feature/*   → Feature branches
+```sh
+npm create astro@latest -- --template blog
 ```
 
----
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## File Naming Convention
+Features:
 
+- ✅ Minimal styling (make it your own!)
+- ✅ 100/100 Lighthouse performance
+- ✅ SEO-friendly with canonical URLs and OpenGraph data
+- ✅ Sitemap support
+- ✅ RSS Feed support
+- ✅ Markdown & MDX support
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+├── public/
+├── src/
+│   ├── components/
+│   ├── content/
+│   ├── layouts/
+│   └── pages/
+├── astro.config.mjs
+├── README.md
+├── package.json
+└── tsconfig.json
 ```
-content/
-├── blog/
-│   ├── 2024-01-15-hello-world.md
-│   ├── 2024-02-03-libertaria-stack.md
-│   └── 2024-03-10-gql-parser.md
-└── pages/
-    ├── about.md
-    └── contact.md
-```
 
-Frontmatter example:
-```yaml
----
-title: "Hello World"
-date: 2024-01-15
-tags: ["intro", "libertaria"]
-draft: false
----
-```
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
----
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-## Deployment
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
 
-**Cloudflare Pages:**
-1. Connect Git repository
-2. Build command: `npm run build`
-3. Output directory: `dist/`
-4. Automatic deployments on push
+Any static assets, like images, can be placed in the `public/` directory.
 
----
+## 🧞 Commands
 
-## Project Status
+All commands are run from the root of the project, from a terminal:
 
-- [x] Tech stack research
-- [ ] Initialize Astro project
-- [ ] Set up Cloudflare Pages
-- [ ] Design theme/layout
-- [ ] First blog post
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
----
+## 👀 Want to learn more?
 
-*Forge burns bright. The Exit is being built.*
+Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
-⚡️
+## Credit
+
+This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
