@@ -2,9 +2,24 @@
 
 > Sovereign; Kinetic; Anti-Fragile.
 
-**Domain:** libertaria.app  
-**Source:** Local Git → Cloudflare Pages  
-**Stack:** Astro + Cloudflare Adapter
+[![Astro](https://img.shields.io/badge/Astro-4.x-orange.svg)](https://astro.build)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare%20Pages-ready-f38020)](https://pages.cloudflare.com)
+[![License](https://img.shields.io/badge/license-MIT%20%2B%20Commons%20Clause-blue)](LICENSE)
+
+**Live:** [libertaria.app](https://libertaria.app)  
+**Stack:** Astro + Cloudflare Pages  
+**Design:** Libertaria Color System (Dark/Light modes)
+
+---
+
+## Design Philosophy
+
+**Dark Mode:** Black (#050505) + Silver (#c0c0c0) + Gold glow accent  
+**Light Mode:** White (#ffffff) + Black (#0a0a0a) + Red glow accent
+
+Hover effects use CSS text-shadow for subtle glow:
+- Dark: `text-shadow: 0 0 20px rgba(234, 179, 8, 0.3)`
+- Light: `text-shadow: 0 0 20px rgba(220, 38, 38, 0.3)`
 
 ---
 
