@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# operational/secret files - never commit to public repo
+OPERATIONS/
+SECRET/
+DEPLOYMENT_CHECKLIST.md
+CLOUDFLARE_SETUP.md
+DEPLOY.md
+*.secret.md
+research_report.md
