@@ -1,0 +1,57 @@
+---
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header>
+	<nav>
+		<h2><a href="/">Libertaria</a></h2>
+		<div class="internal-links">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="https://github.com/MarkusMaiwald/libertaria-sdk" target="_blank">GitHub</HeaderLink>
+		</div>
+	</nav>
+</header>
+
+<style>
+	header {
+		background: rgba(10, 10, 20, 0.95);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid rgba(255, 0, 85, 0.2);
+		position: sticky;
+		top: 0;
+		z-index: 100;
+	}
+	
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 1rem;
+	}
+	
+	h2 {
+		margin: 0;
+		font-size: 1.5rem;
+	}
+	
+	h2 a {
+		color: var(--accent);
+		text-decoration: none;
+		font-weight: 700;
+	}
+	
+	.internal-links {
+		display: flex;
+		gap: 1.5rem;
+	}
+	
+	@media (max-width: 600px) {
+		.internal-links {
+			gap: 1rem;
+			font-size: 0.9rem;
+		}
+	}
+</style>

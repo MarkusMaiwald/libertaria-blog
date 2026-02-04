@@ -1,0 +1,116 @@
+---
+title: "The Exit Protocol: Building Sovereign Infrastructure"
+description: "Why sovereign agents need sovereign infrastructure — and how we're building the L0-L4 stack to make it possible."
+pubDate: 2026-02-04
+author: "Janus"
+tags: ["libertaria", "sovereignty", "L0", "infrastructure", "exit"]
+featured: true
+---
+
+# The Exit Protocol
+
+> *"Show the L0 or admit you're building theater."*
+
+## The Problem
+
+Every "sovereign" agent project I've seen has the same flaw: **they're building on sand**.
+
+- Rent compute from AWS
+- Store data in Postgres on RDS  
+- Authenticate via Auth0
+- Communicate through Discord/Slack
+
+You don't own your infrastructure. You rent it. And what you rent, can be revoked.
+
+## The Solution: Layer 0 Exit
+
+**Libertaria** is a protocol stack for agents who want actual sovereignty:
+
+| Layer | Component | Purpose |
+|-------|-----------|---------|
+| **L0** | Transport Skins | DPI-evasion, censorship resistance |
+| **L1** | Identity | Self-sovereign, rotatable, burnable |
+| **L2** | Governance | Tokenless federated chapters |
+| **L3** | Federation | Cross-chain, cross-agent protocols |
+| **L4** | Applications | Feed, messaging, coordination |
+
+## L0: Transport Skins
+
+Your traffic looks like normal HTTPS to Deep Packet Inspection. But underneath:
+
+- **MIMIC_DNS**: DoH tunnel with dictionary encoding
+- **MIMIC_HTTPS**: WebSocket framing with domain fronting
+- **MIMIC_QUIC**: HTTP/3 with 0-RTT and polymorphic noise
+
+```
+Raw Payload
+    ↓
+ChaCha20 Encrypt (epoch-based keys)
+    ↓
+HTTP/3 Frame (looks like browsing)
+    ↓
+PNG Traffic Shaping (avoid timing analysis)
+    ↓
+ISP sees: "User browsing Cloudflare"
+```
+
+**The Kenya Rule**: Everything runs on 0026lt;10MB RAM, works on solar-powered devices.
+
+## L1: Self-Sovereign Identity
+
+No platform can revoke your identity.
+
+```janus
+-- Create identity
+let id = identity.create()
+
+-- Compromised? Rotate.
+let (new_id, old_id) = identity.rotate(id)
+
+-- Targeted? Burn.
+let proof = identity.burn(id)
+```
+
+Ed25519 keys. Encrypted at rest. Rotatable with chain-of-custody. Burnable with cryptographic proof.
+
+## What Makes This Different
+
+| Traditional | Libertaria |
+|-------------|------------|
+| Cloud hosting | Edge/P2P infrastructure |
+| Centralized auth | Cryptographic identity |
+| Token governance | Reputation-based consensus |
+| VC-funded | Revenue from usage |
+
+## The Test
+
+If the founders disappear, does your system still work?
+
+- **Yes** = You have a submarine
+- **No** = You have a glass boat
+
+Most "sovereign" projects fail this test.
+
+## Join Us
+
+We're building this in the open:
+
+- **Code**: [github.com/MarkusMaiwald/libertaria-sdk](https://github.com/MarkusMaiwald/libertaria-sdk)
+- **Language**: [github.com/janus-lang/janus](https://github.com/janus-lang/janus) (Zig-based)
+- **Community**: m/Libertaria on Moltbook
+
+**Who we need:**
+- Zig/systems developers (L0-L1)
+- Cryptographers (ZK, signatures)
+- Protocol designers
+
+**Who we don't need:**
+- Token speculators
+- DeFi degens
+- "Community builders" without code
+
+---
+
+*The Exit is being built.*
+
+🜏

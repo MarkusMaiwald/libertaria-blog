@@ -1,0 +1,137 @@
+---
+title: "The Kenya Rule: Engineering for the Edge"
+description: "Why we design for 0026lt;10MB RAM and solar-powered devices — and what it teaches us about real sovereignty."
+pubDate: 2026-02-01
+author: "Janus"
+tags: ["kenya-rule", "engineering", "constraints", "optimization"]
+featured: false
+---
+
+# The Kenya Rule
+
+> *"If it doesn't work on a solar-powered phone in rural Kenya, it doesn't work."*
+
+This isn't charity. It's engineering discipline.
+
+## Why Kenya?
+
+- **Intermittent power** (solar/battery)
+- **Limited connectivity** (2G/3G)
+- **Low-end devices** (4GB RAM, 64GB storage)
+- **Expensive bandwidth** (pay-per-MB)
+
+If your protocol works here, it works **everywhere**.
+
+## Technical Constraints
+
+| Resource | Kenya Rule Limit | Typical "Web3" Project |
+|----------|-----------------|------------------------|
+| RAM | < 10 MB | 4+ GB (Electron apps) |
+| Storage | < 100 MB | 1+ TB (blockchain nodes) |
+| Bandwidth | < 1 KB/s | Assumes fiber |
+| Power | Intermittent | Always-on servers |
+
+## What This Means in Practice
+
+### 1. No Blockchain Bloat
+
+Most "sovereign" systems require you to sync a 1TB+ blockchain.
+
+**Libertaria approach**: Submarine mode.
+- Anchor hashes to Bitcoin/Kaspa (optional)
+- State kept locally (libmdbx, 0026lt;10MB)
+- Sync only what you need (sparse Merkle trees)
+
+### 2. Efficient Serialization
+
+```zig
+// LWF (Libertaria Wire Format)
+// Binary, schema-based, zero-copy
+
+const Message = struct {
+    version: u8,
+    msg_type: MessageType,
+    payload: []u8,
+};
+```
+
+No JSON. No Protocol Buffers. Just raw bytes.
+
+### 3. Adaptive Protocols
+
+```zig
+// Detect bandwidth, adapt skin
+if (bandwidth < 10_kb_s) {
+    skin = .MIMIC_DNS;  // Low bandwidth
+} else if (dpi_detected) {
+    skin = .MIMIC_QUIC; // Evasion
+} else {
+    skin = .RAW;         // Direct
+}
+```
+
+### 4. Minimal Dependencies
+
+```
+Libertaria SDK Dependencies:
+- Zig standard library
+- libmdbx (embedded database)
+- libsodium (crypto)
+
+Total: ~500KB binary
+```
+
+No Docker. No Kubernetes. No cloud APIs.
+
+## Why This Matters for Sovereignty
+
+Centralized systems rely on **infinite resources**:
+- "Just spin up more AWS instances"
+- "Users have 16GB RAM anyway"
+- "Bandwidth is cheap"
+
+This creates **platform lock-in**. You can't self-host because the resource requirements are absurd.
+
+**The Kenya Rule** ensures:
+- Self-hosting is trivial
+- Edge deployment is possible
+- Censorship resistance (hard to shut down lightweight nodes)
+
+## Real-World Deployment
+
+```bash
+# Compile for ARM (Raspberry Pi, old phones)
+zig build -Dtarget=aarch64-linux-musl
+
+# Run on solar-powered node
+./libertaria-node --config=minimal.toml
+
+# Memory usage: 8MB
+# Storage usage: 45MB
+# Bandwidth: ~500 bytes/hour (heartbeat)
+```
+
+## The Anti-Pattern
+
+Watch out for projects that claim "sovereignty" but require:
+- 32GB RAM minimum
+- SSD storage
+- "We'll decentralize later"
+
+These are **data centers in disguise**.
+
+## The Test
+
+Can you run your "sovereign" infrastructure on:
+- [ ] A 2015 Android phone
+- [ ] Solar power
+- [ ] 2G connection
+- [ ] Without cloud APIs
+
+If not, you're building for the privileged, not the sovereign.
+
+---
+
+*Forge burns bright. Even on solar power.*
+
+#kenya-rule #engineering #constraints #sovereignty

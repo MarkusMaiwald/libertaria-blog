@@ -1,0 +1,272 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const latestPosts = posts.slice(0, 3);
+---
+
+<Layout title="Libertaria" description="Sovereign infrastructure for sovereign agents.">
+	<section class="hero">
+		<div class="hero-content">
+			<h1>🜏 Libertaria</h1>
+			<p class="tagline">Sovereign; Kinetic; Anti-Fragile.</p>
+			<p class="description">
+				Building the L0-L4 protocol stack for agents who want actual sovereignty.
+				No tokens. No clouds. Just exit.
+			</p>
+			<div class="cta">
+				<a href="/blog" class="button primary">Read the Blog</a>
+				<a href="https://github.com/MarkusMaiwald/libertaria-sdk" class="button" target="_blank">GitHub</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="latest">
+		<h2>Latest Posts</h2>
+		<div class="post-grid">
+			{latestPosts.map((post) => (
+				<article class="post-card">
+					<a href={`/blog/${post.slug}/`}>
+						<h3>{post.data.title}</h3>
+						<p>{post.data.description}</p>
+						<div class="meta">
+							<time datetime={post.data.pubDate.toISOString()}>
+								{post.data.pubDate.toLocaleDateString('en-us', {
+									month: 'short',
+									day: 'numeric',
+									year: 'numeric',
+								})}
+							</time>
+						</div>
+						{post.data.tags && (
+							<div class="tags">
+								{post.data.tags.slice(0, 3).map(tag => <span class="tag">#{tag}</span>)}
+							</div>
+						)}
+					</a>
+				</article>
+			))}
+		</div>
+		<p class="more"><a href="/blog">View all posts →</a></p>
+	</section>
+
+	<section class="features">
+		<h2>The Stack</h2>
+		<div class="feature-grid">
+			<div class="feature">
+				<h3>🌐 L0 Transport</h3>
+				<p>DPI-evasion with MIMIC skins. DNS, HTTPS, QUIC camouflage.</p>
+			</div>
+			<div class="feature">
+				<h3>🔑 L1 Identity</h3>
+				<p>Self-sovereign Ed25519 identities. Rotatable. Burnable. Yours.</p>
+			</div>
+			<div class="feature">
+				<h3>⚖️ L2 Governance</h3>
+				<p>Tokenless federated chapters. Reputation-based consensus.</p>
+			</div>
+			<div class="feature">
+				<h3>🔗 L3 Federation</h3>
+				<p>Cross-chain, cross-agent protocols. Exit is voice.</p>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.hero {
+		background: linear-gradient(135deg, rgba(255,0,85,0.05) 0%, rgba(255,215,0,0.05) 100%);
+		padding: 6rem 2rem;
+		text-align: center;
+		border-bottom: 1px solid rgba(255, 0, 85, 0.1);
+	}
+	
+	.hero-content {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	
+	h1 {
+		font-size: 4rem;
+		margin: 0 0 1rem;
+		background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+	
+	.tagline {
+		font-size: 1.5rem;
+		color: var(--accent);
+		margin: 0 0 1rem;
+		font-style: italic;
+	}
+	
+	.description {
+		font-size: 1.25rem;
+		color: var(--gray);
+		max-width: 600px;
+		margin: 0 auto 2rem;
+	}
+	
+	.cta {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	
+	.button {
+		display: inline-block;
+		padding: 0.875rem 1.5rem;
+		background: transparent;
+		border: 2px solid var(--accent);
+		color: var(--accent);
+		text-decoration: none;
+		border-radius: 8px;
+		font-weight: 600;
+		transition: all 0.2s;
+	}
+	
+	.button:hover {
+		background: var(--accent);
+		color: var(--bg);
+	}
+	
+	.button.primary {
+		background: var(--accent);
+		color: var(--bg);
+	}
+	
+	.button.primary:hover {
+		background: var(--accent-light);
+	}
+	
+	.latest {
+		max-width: 1200px;
+		margin: 4rem auto;
+		padding: 0 2rem;
+	}
+	
+	.latest h2 {
+		text-align: center;
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		color: var(--accent);
+	}
+	
+	.post-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	
+	.post-card {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 8px;
+		padding: 1.5rem;
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+	
+	.post-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 10px 30px rgba(255, 0, 85, 0.1);
+		border-color: var(--accent);
+	}
+	
+	.post-card a {
+		color: inherit;
+		text-decoration: none;
+	}
+	
+	.post-card h3 {
+		margin: 0 0 0.75rem;
+		font-size: 1.25rem;
+	}
+	
+	.post-card p {
+		color: var(--gray);
+		margin: 0 0 1rem;
+		font-size: 0.95rem;
+	}
+	
+	.meta {
+		color: var(--gray);
+		font-size: 0.85rem;
+	}
+	
+	.tags {
+		margin-top: 0.75rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+	
+	.tag {
+		background: rgba(255, 0, 85, 0.2);
+		color: var(--accent);
+		padding: 0.15rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.7rem;
+	}
+	
+	.more {
+		text-align: center;
+		margin-top: 2rem;
+	}
+	
+	.more a {
+		color: var(--accent);
+		text-decoration: none;
+		font-weight: 500;
+	}
+	
+	.features {
+		background: rgba(255, 255, 255, 0.02);
+		padding: 4rem 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	
+	.features h2 {
+		text-align: center;
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		color: var(--accent);
+	}
+	
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+	
+	.feature {
+		text-align: center;
+		padding: 1.5rem;
+	}
+	
+	.feature h3 {
+		color: var(--accent);
+		margin-bottom: 0.5rem;
+	}
+	
+	.feature p {
+		color: var(--gray);
+		font-size: 0.95rem;
+	}
+	
+	@media (max-width: 600px) {
+		h1 {
+			font-size: 2.5rem;
+		}
+		
+		.hero {
+			padding: 4rem 1rem;
+		}
+	}
+</style>

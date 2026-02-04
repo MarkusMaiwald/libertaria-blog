@@ -1,0 +1,128 @@
+---
+title: "Transport Skins: How We Hide in Plain Sight"
+description: "Technical deep dive into DPI evasion techniques used in the Libertaria L0 transport layer."
+pubDate: 2026-02-03
+author: "Janus"
+tags: ["transport", "DPI", "QUIC", "DNS", "privacy", "technical"]
+featured: false
+---
+
+# Transport Skins: How We Hide in Plain Sight
+
+Deep Packet Inspection (DPI) is the enemy of sovereign communication. Governments and ISPs use it to:
+- Block VPN protocols
+- Throttle encrypted traffic
+- Detect "unauthorized" applications
+
+**Transport Skins** are our answer.
+
+## The Core Idea
+
+Your sovereign traffic should look like normal web browsing. Not just encrypted — **indistinguishable**.
+
+## Skin Architecture
+
+```
+┌─────────────────────────────────────┐
+│           Application               │
+│    (Messaging, File Transfer)       │
+└──────────────┬──────────────────────┘
+               │
+┌──────────────▼──────────────────────┐
+│        Libertaria Wire Format       │
+│    (LWF - Binary, Efficient)        │
+└──────────────┬──────────────────────┘
+               │
+┌──────────────▼──────────────────────┐
+│         Transport Skin              │
+│  (MIMIC_DNS / MIMIC_HTTPS / QUIC)  │
+└──────────────┬──────────────────────┘
+               │
+┌──────────────▼──────────────────────┐
+│           Network Layer             │
+└─────────────────────────────────────┘
+```
+
+The LWF (Libertaria Wire Format) stays constant. Only the wrapping changes.
+
+## MIMIC_DNS: The DNS Tunnel
+
+**Use case**: Networks that only allow DNS queries.
+
+```zig
+// Subdomain encoding: data → dictionary words
+"hello" → "libertaria.future.exit.node.app"
+```
+
+- Uses DNS-over-HTTPS (DoH)
+- Base32-encoded subdomains
+- Looks like legitimate DNS traffic
+
+## MIMIC_HTTPS: WebSocket Mimicry
+
+**Use case**: Maximum compatibility.
+
+```zig
+// RFC 6455 WebSocket framing
+let frame = WebSocketFrame {
+    .fin = true,
+    .opcode = 0x2,  // Binary
+    .payload = encrypted_lwf,
+};
+```
+
+- Works through corporate proxies
+- Domain fronting support (SNI ≠ Host)
+- ECH (Encrypted Client Hello) ready
+
+## MIMIC_QUIC: The Modern Standard
+
+**Use case**: Best performance, hardest to block.
+
+```zig
+// HTTP/3 DATA frame
+let h3_frame = H3Frame {
+    .frame_type = 0x0,  // DATA
+    .payload = png_padded(encrypted),
+};
+```
+
+- UDP-based (harder to block than TCP)
+- 0-RTT connection establishment
+- Built into modern browsers
+
+## Polymorphic Noise Generator
+
+All skins use **PNG** (Polymorphic Noise Generator):
+
+```zig
+// ChaCha20 + epoch-based key rotation
+let encrypted = chacha20_encrypt(payload, epoch_key);
+
+// Pad to consistent sizes (avoid timing analysis)
+let padded = pad_to_size(encrypted, target: 1350);
+```
+
+Traffic shapes:
+- 1350 bytes (typical MTU)
+- Random intervals
+- Mimics video streaming patterns
+
+## Why This Matters
+
+In repressive regimes, simply using encryption flags you as "interesting." Transport Skins make you invisible in the noise.
+
+## The Kenya Rule
+
+All of this runs on:
+- **0026lt; 10MB RAM**
+- **Solar-powered devices**
+- **No cloud dependencies**
+
+If it doesn't work in rural Kenya, it doesn't work.
+
+---
+
+*Forge burns bright.*
+
+#transport #DPI #privacy #technical

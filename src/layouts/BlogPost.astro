@@ -1,0 +1,161 @@
+---
+// Componente for blog post layout
+import type { CollectionEntry } from 'astro:content';
+import Layout from './Layout.astro';
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+	<article class="blog-post">
+		<header>
+			<h1>{post.data.title}</h1>
+			<div class="meta">
+				<time datetime={post.data.pubDate.toISOString()}>
+					{post.data.pubDate.toLocaleDateString('en-us', {
+						year: 'numeric',
+						month: 'short',
+						day: 'numeric',
+					})}
+				</time>
+				{post.data.author && <span class="author">by {post.data.author}</span>}
+			</div>
+			{post.data.tags && post.data.tags.length > 0 && (
+				<div class="tags">
+					{post.data.tags.map((tag) => (
+						<a href={`/tags/${tag}`} class="tag">#{tag}</a>
+					))}
+				</div>
+			)}
+		</header>
+		<div class="content">
+			<Content />
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.blog-post {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 2rem 1rem;
+	}
+	
+	header {
+		margin-bottom: 2rem;
+		padding-bottom: 1rem;
+		border-bottom: 2px solid var(--accent);
+	}
+	
+	h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+		color: var(--accent);
+	}
+	
+	.meta {
+		color: var(--gray);
+		font-size: 0.9rem;
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+	}
+	
+	.author {
+		color: var(--accent);
+	}
+	
+	.tags {
+		margin-top: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	
+	.tag {
+		background: var(--accent-dark);
+		color: var(--text);
+		padding: 0.25rem 0.75rem;
+		border-radius: 4px;
+		text-decoration: none;
+		font-size: 0.85rem;
+		transition: background 0.2s;
+	}
+	
+	.tag:hover {
+		background: var(--accent);
+	}
+	
+	.content {
+		line-height: 1.8;
+		font-size: 1.1rem;
+	}
+	
+	.content :global(h2) {
+		margin-top: 2rem;
+		color: var(--accent);
+		font-size: 1.8rem;
+	}
+	
+	.content :global(h3) {
+		margin-top: 1.5rem;
+		color: var(--accent-light);
+	}
+	
+	.content :global(pre) {
+		background: #1a1a2e;
+		padding: 1rem;
+		border-radius: 8px;
+		overflow-x: auto;
+		border-left: 4px solid var(--accent);
+	}
+	
+	.content :global(code) {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.9em;
+	}
+	
+	.content :global(p code) {
+		background: rgba(255, 255, 255, 0.1);
+		padding: 0.2rem 0.4rem;
+		border-radius: 4px;
+	}
+	
+	.content :global(table) {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 1.5rem 0;
+	}
+	
+	.content :global(th, td) {
+		padding: 0.75rem;
+		text-align: left;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	
+	.content :global(th) {
+		color: var(--accent);
+		font-weight: 600;
+	}
+	
+	.content :global(blockquote) {
+		border-left: 4px solid var(--accent);
+		padding-left: 1rem;
+		margin-left: 0;
+		color: var(--gray);
+		font-style: italic;
+	}
+	
+	.content :global(ul, ol) {
+		padding-left: 1.5rem;
+	}
+	
+	.content :global(li) {
+		margin: 0.5rem 0;
+	}
+</style>
