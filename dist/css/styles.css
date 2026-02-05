@@ -121,6 +121,18 @@ body {
   text-shadow: var(--glow-red);
 }
 
+.logo-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+  transition: filter var(--duration-fast) var(--ease-out-expo);
+}
+
+.logo:hover .logo-img {
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.7));
+}
+
 .nav-links {
   display: flex;
   gap: 2rem;
