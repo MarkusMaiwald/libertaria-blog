@@ -2,27 +2,68 @@
 import HeaderLink from './HeaderLink.astro';
 ---
 
-<header>
+<header class="navbar">
 	<nav>
 		<h2><a href="/">Libertaria</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="https://github.com/MarkusMaiwald/libertaria-sdk" target="_blank">GitHub</HeaderLink>
+			<HeaderLink href="https://github.com/libertaria-project/libertaria-stack" target="_blank">GitHub</HeaderLink>
 		</div>
 	</nav>
 </header>
 
+<script>
+	// Scroll-linked Navbar Enhancement
+	(function() {
+		const navbar = document.querySelector('.navbar');
+		if (!navbar) return;
+
+		let ticking = false;
+
+		function updateNavbar() {
+			if (window.scrollY > 50) {
+				navbar.classList.add('scrolled');
+			} else {
+				navbar.classList.remove('scrolled');
+			}
+			ticking = false;
+		}
+
+		window.addEventListener('scroll', () => {
+			if (!ticking) {
+				requestAnimationFrame(updateNavbar);
+				ticking = true;
+			}
+		});
+
+		// Initial check
+		updateNavbar();
+	})();
+</script>
+
 <style>
-	header {
-		background: rgba(10, 10, 20, 0.95);
+	.navbar {
+		background: rgba(10, 10, 10, 0.7);
 		backdrop-filter: blur(10px);
-		border-bottom: 1px solid rgba(255, 0, 85, 0.2);
+		-webkit-backdrop-filter: blur(10px);
+		border-bottom: 1px solid rgba(255, 215, 0, 0.1);
 		position: sticky;
 		top: 0;
 		z-index: 100;
+		transition: background var(--duration-base) var(--ease-out-expo),
+		            backdrop-filter var(--duration-base) var(--ease-out-expo),
+		            -webkit-backdrop-filter var(--duration-base) var(--ease-out-expo),
+		            border-bottom-color var(--duration-base) var(--ease-out-expo);
 	}
-	
+
+	.navbar.scrolled {
+		background: rgba(10, 10, 10, 0.95);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border-bottom-color: rgba(255, 215, 0, 0.3);
+	}
+
 	nav {
 		display: flex;
 		align-items: center;
@@ -31,23 +72,28 @@ import HeaderLink from './HeaderLink.astro';
 		margin: 0 auto;
 		padding: 1rem;
 	}
-	
+
 	h2 {
 		margin: 0;
 		font-size: 1.5rem;
 	}
-	
+
 	h2 a {
 		color: var(--accent);
 		text-decoration: none;
 		font-weight: 700;
+		transition: color var(--duration-fast) var(--ease-out-expo);
 	}
-	
+
+	h2 a:hover {
+		color: var(--color-gold-light);
+	}
+
 	.internal-links {
 		display: flex;
 		gap: 1.5rem;
 	}
-	
+
 	@media (max-width: 600px) {
 		.internal-links {
 			gap: 1rem;

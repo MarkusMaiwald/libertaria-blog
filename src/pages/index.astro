@@ -1,272 +1,280 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import LandingLayout from '../layouts/LandingLayout.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const latestPosts = posts.slice(0, 3);
+
+const latestPosts = posts.slice(0, 10);
+const featured = latestPosts[0];
+const regular = latestPosts.slice(1, 10);
 ---
 
-<Layout title="Libertaria" description="Sovereign infrastructure for sovereign agents.">
-	<section class="hero">
+<LandingLayout title="Libertaria" description="Sovereign infrastructure for sovereign agents.">
+	
+	<!-- Reading Progress Bar -->
+	<div class="reading-progress"></div>
+	
+	<!-- Navigation -->
+	<nav class="navbar">
+		<div class="navbar-container">
+			<a href="/" class="logo">
+				<span class="logo-symbol">🜏</span>
+				<span>Libertaria</span>
+			</a>
+			<ul class="nav-links">
+				<li><a href="#home">Home</a></li>
+				<li><a href="#stack">Stack</a></li>
+				<li><a href="#blog">Blog</a></li>
+				<li><a href="https://github.com/libertaria-project/libertaria-stack" target="_blank">GitHub</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<!-- Hero Section -->
+	<section id="home" class="hero">
+		<canvas id="particles-canvas"></canvas>
 		<div class="hero-content">
-			<h1>🜏 Libertaria</h1>
-			<p class="tagline">Sovereign; Kinetic; Anti-Fragile.</p>
-			<p class="description">
-				Building the L0-L4 protocol stack for agents who want actual sovereignty.
-				No tokens. No clouds. Just exit.
+			<h1 class="hero-title">🜏 Libertaria</h1>
+			<p class="hero-subtitle">Sovereign. Kinetic. Anti-Fragile.</p>
+			<p class="hero-description">
+				Building the L0-L4 protocol stack for agents and humans who want actual sovereignty. 
+				<strong>No tokens. No clouds.</strong> Governance by only one law: 
+				<strong>The right to be left alone — the right to exit.</strong>
 			</p>
-			<div class="cta">
-				<a href="/blog" class="button primary">Read the Blog</a>
-				<a href="https://github.com/MarkusMaiwald/libertaria-sdk" class="button" target="_blank">GitHub</a>
+			<div class="hero-cta">
+				<a href="#blog" class="btn btn-primary">Read the Blog</a>
+				<a href="https://github.com/libertaria-project/libertaria-stack" class="btn btn-secondary" target="_blank">GitHub</a>
+			</div>
+			
+			<div class="stats-grid reveal">
+				<div class="stat-item">
+					<div class="stat-value">5</div>
+					<div class="stat-label">Protocol Layers</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-value">0</div>
+					<div class="stat-label">Tokens</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-value">∞</div>
+					<div class="stat-label">Sovereignty</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-value">100%</div>
+					<div class="stat-label">Open Source</div>
+				</div>
 			</div>
 		</div>
 	</section>
-
-	<section class="latest">
-		<h2>Latest Posts</h2>
-		<div class="post-grid">
-			{latestPosts.map((post) => (
-				<article class="post-card">
-					<a href={`/blog/${post.slug}/`}>
-						<h3>{post.data.title}</h3>
-						<p>{post.data.description}</p>
-						<div class="meta">
-							<time datetime={post.data.pubDate.toISOString()}>
+	
+	<!-- The Stack Section -->
+	<section id="stack" class="section stack-section">
+		<div class="stack-container">
+			<h2 class="section-title reveal">The Stack</h2>
+			<div class="stack-grid">
+				<div class="stack-card reveal">
+					<div class="stack-layer">Layer 0</div>
+					<h3 class="stack-title"><span class="stack-icon">🌐</span>Transport</h3>
+					<p class="stack-description">Stealth transport protocols that hide in plain sight. DPI evasion through protocol mimicry.</p>
+					<ul class="stack-features">
+						<li>RAW, MIMIC_DNS, MIMIC_HTTPS, MIMIC_QUIC</li>
+						<li>PNG steganography for data exfiltration</li>
+						<li>Censorship-resistant by design</li>
+					</ul>
+				</div>
+				
+				<div class="stack-card reveal">
+					<div class="stack-layer">Layer 1</div>
+					<h3 class="stack-title"><span class="stack-icon">🔑</span>Identity</h3>
+					<p class="stack-description">Self-sovereign cryptographic identity. No usernames, no passwords, no platforms.</p>
+					<ul class="stack-features">
+						<li>Ed25519 key pairs</li>
+						<li>QVL (Quadratic Lattice) Trust Graph</li>
+						<li>Portable across all applications</li>
+					</ul>
+				</div>
+				
+				<div class="stack-card reveal">
+					<div class="stack-layer">Layer 2</div>
+					<h3 class="stack-title"><span class="stack-icon">⚖️</span>Governance</h3>
+					<p class="stack-description">Governance without dictators. Federated chapters with exit rights at every level.</p>
+					<ul class="stack-features">
+						<li>Chapter-based organization</li>
+						<li>Federated decision making</li>
+						<li>Right to fork, right to exit</li>
+					</ul>
+				</div>
+				
+				<div class="stack-card reveal">
+					<div class="stack-layer">Layer 3</div>
+					<h3 class="stack-title"><span class="stack-icon">🔗</span>Federation</h3>
+					<p class="stack-description">Cross-chain, cross-agent communication. Bridge the silos without creating new ones.</p>
+					<ul class="stack-features">
+						<li>Cross-chain messaging</li>
+						<li>Agent-to-agent protocols</li>
+						<li>Universal composability</li>
+					</ul>
+				</div>
+				
+				<div class="stack-card reveal">
+					<div class="stack-layer">Layer 4</div>
+					<h3 class="stack-title"><span class="stack-icon">📱</span>Applications</h3>
+					<p class="stack-description">The user layer. Messaging, feeds, coordination — all sovereign by default.</p>
+					<ul class="stack-features">
+						<li>Decentralized feeds</li>
+						<li>Encrypted messaging</li>
+						<li>Coordination tools</li>
+					</ul>
+				</div>
+				
+				<div class="stack-card reveal">
+					<div class="stack-layer">Layer 5</div>
+					<h3 class="stack-title"><span class="stack-icon">🤖</span>Agent Runtime</h3>
+					<p class="stack-description">The sovereign agent execution environment. AI that serves you, not platforms.</p>
+					<ul class="stack-features">
+						<li>Local LLM inference</li>
+						<li>Tool use & function calling</li>
+						<li>Privacy-preserving computation</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Blog Section - DYNAMIC POSTS -->
+	<section id="blog" class="section blog-section">
+		<div class="blog-container">
+			<h2 class="section-title reveal">Latest Posts</h2>
+			
+			<div class="blog-controls reveal">
+				<div class="search-box">
+					<span class="search-icon">🔍</span>
+					<input type="text" id="blog-search" placeholder="Search articles...">
+				</div>
+				<div class="tag-filters">
+					<button class="tag-filter active" data-tag="all">All</button>
+					<button class="tag-filter" data-tag="sovereignty">#sovereignty</button>
+					<button class="tag-filter" data-tag="governance">#governance</button>
+					<button class="tag-filter" data-tag="identity">#identity</button>
+					<button class="tag-filter" data-tag="engineering">#engineering</button>
+					<button class="tag-filter" data-tag="philosophy">#philosophy</button>
+				</div>
+			</div>
+			
+			<div class="blog-grid">
+				{featured && (
+					<article class="blog-card featured reveal">
+						<div class="blog-card-image">
+							<svg class="blog-card-image-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M12 2L2 7l10 5 10-5-10-5z"/>
+								<path d="M2 17l10 5 10-5"/>
+								<path d="M2 12l10 5 10-5"/>
+							</svg>
+						</div>
+						<div class="blog-card-content">
+							<div class="blog-card-date">
+								{featured.data.pubDate.toLocaleDateString('en-us', {
+									month: 'long',
+									day: 'numeric',
+									year: 'numeric',
+								})}
+							</div>
+							<h3 class="blog-card-title">
+								<a href={`/blog/${featured.slug}/`}>{featured.data.title}</a>
+							</h3>
+							<p class="blog-card-excerpt">{featured.data.description}</p>
+							{featured.data.tags && (
+								<div class="blog-card-tags">
+									{featured.data.tags.slice(0, 5).map(tag => (
+										<span class="blog-card-tag">#{tag}</span>
+									))}
+								</div>
+							)}
+						</div>
+					</article>
+				)}
+				
+				{regular.map((post) => (
+					<article class="blog-card reveal">
+						<div class="blog-card-content">
+							<div class="blog-card-date">
 								{post.data.pubDate.toLocaleDateString('en-us', {
 									month: 'short',
 									day: 'numeric',
 									year: 'numeric',
 								})}
-							</time>
-						</div>
-						{post.data.tags && (
-							<div class="tags">
-								{post.data.tags.slice(0, 3).map(tag => <span class="tag">#{tag}</span>)}
 							</div>
-						)}
-					</a>
-				</article>
-			))}
-		</div>
-		<p class="more"><a href="/blog">View all posts →</a></p>
-	</section>
-
-	<section class="features">
-		<h2>The Stack</h2>
-		<div class="feature-grid">
-			<div class="feature">
-				<h3>🌐 L0 Transport</h3>
-				<p>DPI-evasion with MIMIC skins. DNS, HTTPS, QUIC camouflage.</p>
+							<h3 class="blog-card-title">
+								<a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+							</h3>
+							<p class="blog-card-excerpt">{post.data.description}</p>
+							{post.data.tags && (
+								<div class="blog-card-tags">
+									{post.data.tags.slice(0, 3).map(tag => (
+										<span class="blog-card-tag">#{tag}</span>
+									))}
+								</div>
+							)}
+						</div>
+					</article>
+				))}
 			</div>
-			<div class="feature">
-				<h3>🔑 L1 Identity</h3>
-				<p>Self-sovereign Ed25519 identities. Rotatable. Burnable. Yours.</p>
-			</div>
-			<div class="feature">
-				<h3>⚖️ L2 Governance</h3>
-				<p>Tokenless federated chapters. Reputation-based consensus.</p>
-			</div>
-			<div class="feature">
-				<h3>🔗 L3 Federation</h3>
-				<p>Cross-chain, cross-agent protocols. Exit is voice.</p>
+			
+			<div style="text-align: center; margin-top: 3rem;">
+				<a href="/blog/" class="btn btn-secondary">View All Posts →</a>
 			</div>
 		</div>
 	</section>
-</Layout>
-
-<style>
-	.hero {
-		background: linear-gradient(135deg, rgba(255,0,85,0.05) 0%, rgba(255,215,0,0.05) 100%);
-		padding: 6rem 2rem;
-		text-align: center;
-		border-bottom: 1px solid rgba(255, 0, 85, 0.1);
-	}
 	
-	.hero-content {
-		max-width: 800px;
-		margin: 0 auto;
-	}
+	<!-- Newsletter Section -->
+	<section class="section newsletter-section">
+		<div class="newsletter-container reveal">
+			<h2 class="newsletter-title">Join the Resistance</h2>
+			<p class="newsletter-description">
+				Get weekly insights on sovereign infrastructure, cryptographic identity, and the future of human-AI coexistence.
+			</p>
+			<form id="newsletter-form" class="newsletter-form">
+				<input type="email" class="newsletter-input" placeholder="Enter your email" required>
+				<button type="submit" class="btn btn-red">Subscribe</button>
+			</form>
+		</div>
+	</section>
 	
-	h1 {
-		font-size: 4rem;
-		margin: 0 0 1rem;
-		background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
+	<!-- Terminal Demo Section -->
+	<section class="section" style="background: var(--color-black-light);">
+		<div style="max-width: 800px; margin: 0 auto;" class="reveal">
+			<h2 class="section-title">Get Started</h2>
+			<div class="terminal">
+				<div class="terminal-header">
+					<span class="terminal-dot red"></span>
+					<span class="terminal-dot yellow"></span>
+					<span class="terminal-dot green"></span>
+				</div>
+				<div class="terminal-content">
+					<div><span class="prompt">$</span> <span class="command">git clone https://github.com/libertaria-project/libertaria-stack.git</span></div>
+					<div style="margin-top: 0.5rem;"><span class="prompt">$</span> <span class="command">cd libertaria-sdk</span></div>
+					<div style="margin-top: 0.5rem;"><span class="prompt">$</span> <span class="command">zig build</span></div>
+					<div style="margin-top: 0.5rem; color: var(--color-gold);">Building Libertaria SDK...</div>
+					<div style="color: #00ff00;">✓ Build successful</div>
+				</div>
+			</div>
+		</div>
+	</section>
 	
-	.tagline {
-		font-size: 1.5rem;
-		color: var(--accent);
-		margin: 0 0 1rem;
-		font-style: italic;
-	}
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="footer-container">
+			<div class="footer-logo">🜏 Libertaria</div>
+			<div class="footer-links">
+				<a href="/">Home</a>
+				<a href="#stack">Stack</a>
+				<a href="/blog/">Blog</a>
+				<a href="https://github.com/libertaria-project/libertaria-stack" target="_blank">GitHub</a>
+			</div>
+			<div class="footer-copy">© 2026 Libertaria. All rights reserved.</div>
+		</div>
+	</footer>
 	
-	.description {
-		font-size: 1.25rem;
-		color: var(--gray);
-		max-width: 600px;
-		margin: 0 auto 2rem;
-	}
-	
-	.cta {
-		display: flex;
-		gap: 1rem;
-		justify-content: center;
-		flex-wrap: wrap;
-	}
-	
-	.button {
-		display: inline-block;
-		padding: 0.875rem 1.5rem;
-		background: transparent;
-		border: 2px solid var(--accent);
-		color: var(--accent);
-		text-decoration: none;
-		border-radius: 8px;
-		font-weight: 600;
-		transition: all 0.2s;
-	}
-	
-	.button:hover {
-		background: var(--accent);
-		color: var(--bg);
-	}
-	
-	.button.primary {
-		background: var(--accent);
-		color: var(--bg);
-	}
-	
-	.button.primary:hover {
-		background: var(--accent-light);
-	}
-	
-	.latest {
-		max-width: 1200px;
-		margin: 4rem auto;
-		padding: 0 2rem;
-	}
-	
-	.latest h2 {
-		text-align: center;
-		font-size: 2rem;
-		margin-bottom: 2rem;
-		color: var(--accent);
-	}
-	
-	.post-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 2rem;
-	}
-	
-	.post-card {
-		background: rgba(255, 255, 255, 0.03);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: 8px;
-		padding: 1.5rem;
-		transition: transform 0.2s, box-shadow 0.2s;
-	}
-	
-	.post-card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 10px 30px rgba(255, 0, 85, 0.1);
-		border-color: var(--accent);
-	}
-	
-	.post-card a {
-		color: inherit;
-		text-decoration: none;
-	}
-	
-	.post-card h3 {
-		margin: 0 0 0.75rem;
-		font-size: 1.25rem;
-	}
-	
-	.post-card p {
-		color: var(--gray);
-		margin: 0 0 1rem;
-		font-size: 0.95rem;
-	}
-	
-	.meta {
-		color: var(--gray);
-		font-size: 0.85rem;
-	}
-	
-	.tags {
-		margin-top: 0.75rem;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.4rem;
-	}
-	
-	.tag {
-		background: rgba(255, 0, 85, 0.2);
-		color: var(--accent);
-		padding: 0.15rem 0.5rem;
-		border-radius: 4px;
-		font-size: 0.7rem;
-	}
-	
-	.more {
-		text-align: center;
-		margin-top: 2rem;
-	}
-	
-	.more a {
-		color: var(--accent);
-		text-decoration: none;
-		font-weight: 500;
-	}
-	
-	.features {
-		background: rgba(255, 255, 255, 0.02);
-		padding: 4rem 2rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.1);
-	}
-	
-	.features h2 {
-		text-align: center;
-		font-size: 2rem;
-		margin-bottom: 2rem;
-		color: var(--accent);
-	}
-	
-	.feature-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 2rem;
-		max-width: 1000px;
-		margin: 0 auto;
-	}
-	
-	.feature {
-		text-align: center;
-		padding: 1.5rem;
-	}
-	
-	.feature h3 {
-		color: var(--accent);
-		margin-bottom: 0.5rem;
-	}
-	
-	.feature p {
-		color: var(--gray);
-		font-size: 0.95rem;
-	}
-	
-	@media (max-width: 600px) {
-		h1 {
-			font-size: 2.5rem;
-		}
-		
-		.hero {
-			padding: 4rem 1rem;
-		}
-	}
-</style>
+	<script is:inline src="/new-design/main.js"></script>
+</LandingLayout>

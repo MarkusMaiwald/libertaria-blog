@@ -4,7 +4,7 @@ const pathname = Astro.url.pathname;
 const isActive = pathname === href || pathname.startsWith(href + '/');
 ---
 
-<a href={href} target={target} class={isActive ? 'active' : ''}>
+<a href={href} target={target} aria-current={isActive ? 'page' : undefined} class={isActive ? 'active' : ''}>
 	<slot />
 </a>
 
@@ -18,17 +18,19 @@ const isActive = pathname === href || pathname.startsWith(href + '/');
 		letter-spacing: 0.02em;
 		border-bottom: 2px solid transparent;
 		text-decoration: none;
-		transition: all 0.2s ease;
+		transition: color var(--duration-fast) var(--ease-out-expo),
+		            border-bottom-color var(--duration-base) var(--ease-out-expo);
 	}
-	
+
 	a:hover {
 		color: var(--accent);
-		border-bottom-color: var(--accent);
+		border-bottom-color: var(--red);
 	}
-	
-	a.active {
+
+	a.active,
+	a[aria-current="page"] {
 		color: var(--accent);
-		border-bottom-color: var(--accent);
+		border-bottom-color: var(--red);
 		font-weight: 600;
 	}
 </style>

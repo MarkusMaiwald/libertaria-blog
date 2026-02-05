@@ -1,0 +1,168 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = 'Sovereign; Kinetic; Anti-Fragile.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/styles.css?v=2">
+		<style is:global>
+			/* ========================================
+			   PHASE 3 POLISH FIXES - INLINE FALLBACK
+			   ======================================== */
+
+			/* Premium Easing Curves */
+			:root {
+				--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+				--ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+				--duration-fast: 150ms;
+				--duration-base: 300ms;
+				--duration-slow: 500ms;
+			}
+
+			/* Fix 1: Skeleton Loading States */
+			.skeleton {
+				background: linear-gradient(90deg, var(--color-black-lighter) 25%, var(--color-black-light) 50%, var(--color-black-lighter) 75%);
+				background-size: 200% 100%;
+				animation: shimmer 1.5s infinite;
+				border-radius: 8px;
+			}
+
+			@keyframes shimmer {
+				0% { background-position: 200% 0; }
+				100% { background-position: -200% 0; }
+			}
+
+			.skeleton-card {
+				background: linear-gradient(145deg, var(--color-black-lighter) 0%, var(--color-black-light) 100%);
+				border: 1px solid rgba(255, 215, 0, 0.1);
+				border-radius: 16px;
+				overflow: hidden;
+				padding: 1.5rem;
+			}
+
+			.skeleton-image {
+				width: 100%;
+				height: 200px;
+				border-radius: 8px;
+				margin-bottom: 1rem;
+			}
+
+			.skeleton-title {
+				width: 80%;
+				height: 1.5rem;
+				border-radius: 4px;
+				margin-bottom: 0.75rem;
+			}
+
+			.skeleton-excerpt {
+				width: 100%;
+				height: 4rem;
+				border-radius: 4px;
+				margin-bottom: 1rem;
+			}
+
+			.skeleton-tags {
+				display: flex;
+				gap: 0.5rem;
+			}
+
+			.skeleton-tag {
+				width: 60px;
+				height: 1.5rem;
+				border-radius: 4px;
+			}
+
+			/* Fix 3: Active Navigation Indicator */
+			.nav-links a[aria-current="page"],
+			.nav-links a.active {
+				color: var(--color-gold);
+			}
+
+			.nav-links a[aria-current="page"]::after,
+			.nav-links a.active::after {
+				width: 100%;
+			}
+
+			/* Fix 4: Scroll-Linked Navbar Enhancement */
+			.navbar {
+				background: rgba(10, 10, 10, 0.7);
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				transition: background var(--duration-base) var(--ease-out-expo),
+				            backdrop-filter var(--duration-base) var(--ease-out-expo),
+				            -webkit-backdrop-filter var(--duration-base) var(--ease-out-expo),
+				            border-bottom-color var(--duration-base) var(--ease-out-expo);
+			}
+
+			.navbar.scrolled {
+				background: rgba(10, 10, 10, 0.95);
+				backdrop-filter: blur(20px);
+				-webkit-backdrop-filter: blur(20px);
+				border-bottom-color: rgba(255, 215, 0, 0.3);
+			}
+
+			/* Enhanced Micro-interactions with Premium Easing */
+			.btn {
+				transition: transform var(--duration-fast) var(--ease-out-expo),
+				            box-shadow var(--duration-base) var(--ease-out-expo),
+				            background-color var(--duration-base) var(--ease-out-expo);
+			}
+
+			.blog-card {
+				transition: transform var(--duration-slow) var(--ease-out-expo),
+				            border-color var(--duration-base) var(--ease-out-expo),
+				            box-shadow var(--duration-base) var(--ease-out-expo);
+			}
+
+			.stack-card {
+				transition: transform var(--duration-slow) var(--ease-out-expo),
+				            border-color var(--duration-base) var(--ease-out-expo),
+				            box-shadow var(--duration-base) var(--ease-out-expo);
+			}
+
+			.nav-links a {
+				transition: color var(--duration-fast) var(--ease-out-expo);
+			}
+
+			.nav-links a::after {
+				transition: width var(--duration-base) var(--ease-out-expo);
+			}
+
+			.tag-filter {
+				transition: background-color var(--duration-fast) var(--ease-out-expo),
+				            border-color var(--duration-fast) var(--ease-out-expo),
+				            color var(--duration-fast) var(--ease-out-expo),
+				            box-shadow var(--duration-fast) var(--ease-out-expo);
+			}
+
+			.search-box input,
+			.newsletter-input {
+				transition: border-color var(--duration-fast) var(--ease-out-expo),
+				            box-shadow var(--duration-fast) var(--ease-out-expo);
+			}
+
+			/* Reduced motion support */
+			@media (prefers-reduced-motion: reduce) {
+				.skeleton {
+					animation: none;
+					background: var(--color-black-lighter);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

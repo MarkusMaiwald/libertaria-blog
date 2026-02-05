@@ -1,0 +1,49 @@
+/* ========================================
+   SKELETON LOADING COMPONENT
+   Usage: Copy this HTML when loading blog cards
+   ========================================
+
+<!-- Skeleton Card Example -->
+<article class="skeleton-card">
+  <div class="skeleton skeleton-image"></div>
+  <div class="skeleton skeleton-title"></div>
+  <div class="skeleton skeleton-excerpt"></div>
+  <div class="skeleton-tags">
+    <div class="skeleton skeleton-tag"></div>
+    <div class="skeleton skeleton-tag"></div>
+    <div class="skeleton skeleton-tag"></div>
+  </div>
+</article>
+
+<!-- Multiple Skeleton Cards Grid -->
+<div class="blog-grid skeleton-grid" id="skeleton-container">
+  <!-- Repeat skeleton-card 6x for loading state -->
+</div>
+
+<script>
+// Example: Show skeletons while loading, then replace with real content
+function showSkeletonLoading() {
+  const container = document.getElementById('blog-grid');
+  const skeletonHTML = Array(6).fill(`
+    <article class="skeleton-card">
+      <div class="skeleton skeleton-image"></div>
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton skeleton-excerpt"></div>
+      <div class="skeleton-tags">
+        <div class="skeleton skeleton-tag"></div>
+        <div class="skeleton skeleton-tag"></div>
+      </div>
+    </article>
+  `).join('');
+
+  container.innerHTML = skeletonHTML;
+}
+
+// Hide skeletons and show real content
+function hideSkeletonLoading() {
+  // Replace with actual blog card content
+  // This would typically be called after fetch completes
+}
+</script>
+
+*/

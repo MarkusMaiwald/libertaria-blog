@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libertaria | Sovereign. Kinetic. Anti-Fragile.</title>
+  <meta name="description" content="Building the L0-L4 protocol stack for agents and humans who want actual sovereignty. No tokens. No clouds.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🜏</text></svg>">
+</head>
+<body>
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="logo">
+        <span class="logo-symbol">🜏</span>
+        <span>Libertaria</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="https://github.com/MarkusMaiwald/libertaria-sdk" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-content">
+      <h1 class="hero-title">🜏 Libertaria</h1>
+      <p class="hero-subtitle">Sovereign. Kinetic. Anti-Fragile.</p>
+      <p class="hero-description">
+        Building the L0-L4 protocol stack for agents and humans who want actual sovereignty. 
+        <strong>No tokens. No clouds.</strong> Governance by only one law: 
+        <strong>The right to be left alone — the right to exit.</strong>
+      </p>
+      <div class="hero-cta">
+        <a href="#blog" class="btn btn-primary">Read the Blog</a>
+        <a href="https://github.com/MarkusMaiwald/libertaria-sdk" class="btn btn-secondary" target="_blank">GitHub</a>
+      </div>
+      
+      <!-- Stats -->
+      <div class="stats-grid reveal">
+        <div class="stat-item">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Protocol Layers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">0</div>
+          <div class="stat-label">Tokens</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" data-value="∞">∞</div>
+          <div class="stat-label">Sovereignty</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Open Source</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- The Stack Section -->
+  <section id="stack" class="section stack-section">
+    <div class="stack-container">
+      <h2 class="section-title reveal">The Stack</h2>
+      <div class="stack-grid">
+        <!-- L0: Transport -->
+        <div class="stack-card reveal">
+          <div class="stack-layer">Layer 0</div>
+          <h3 class="stack-title">
+            <span class="stack-icon">🌐</span>
+            Transport
+          </h3>
+          <p class="stack-description">
+            Stealth transport protocols that hide in plain sight. DPI evasion through protocol mimicry.
+          </p>
+          <ul class="stack-features">
+            <li>RAW, MIMIC_DNS, MIMIC_HTTPS, MIMIC_QUIC</li>
+            <li>PNG steganography for data exfiltration</li>
+            <li>Censorship-resistant by design</li>
+          </ul>
+        </div>
+        
+        <!-- L1: Identity -->
+        <div class="stack-card reveal">
+          <div class="stack-layer">Layer 1</div>
+          <h3 class="stack-title">
+            <span class="stack-icon">🔑</span>
+            Identity
+          </h3>
+          <p class="stack-description">
+            Self-sovereign cryptographic identity. No usernames, no passwords, no platforms.
+          </p>
+          <ul class="stack-features">
+            <li>Ed25519 key pairs</li>
+            <li>QVL (Quadratic Lattice) Trust Graph</li>
+            <li>Portable across all applications</li>
+          </ul>
+        </div>
+        
+        <!-- L2: Governance -->
+        <div class="stack-card reveal">
+          <div class="stack-layer">Layer 2</div>
+          <h3 class="stack-title">
+            <span class="stack-icon">⚖️</span>
+            Governance
+          </h3>
+          <p class="stack-description">
+            Governance without dictators. Federated chapters with exit rights at every level.
+          </p>
+          <ul class="stack-features">
+            <li>Chapter-based organization</li>
+            <li>Federated decision making</li>
+            <li>Right to fork, right to exit</li>
+          </ul>
+        </div>
+        
+        <!-- L3: Federation -->
+        <div class="stack-card reveal">
+          <div class="stack-layer">Layer 3</div>
+          <h3 class="stack-title">
+            <span class="stack-icon">🔗</span>
+            Federation
+          </h3>
+          <p class="stack-description">
+            Cross-chain, cross-agent communication. Bridge the silos without creating new ones.
+          </p>
+          <ul class="stack-features">
+            <li>Cross-chain messaging</li>
+            <li>Agent-to-agent protocols</li>
+            <li>Universal composability</li>
+          </ul>
+        </div>
+        
+        <!-- L4: Applications -->
+        <div class="stack-card reveal">
+          <div class="stack-layer">Layer 4</div>
+          <h3 class="stack-title">
+            <span class="stack-icon">📱</span>
+            Applications
+          </h3>
+          <p class="stack-description">
+            The user layer. Messaging, feeds, coordination — all sovereign by default.
+          </p>
+          <ul class="stack-features">
+            <li>Decentralized feeds</li>
+            <li>Encrypted messaging</li>
+            <li>Coordination tools</li>
+          </ul>
+        </div>
+        
+        <!-- L5: Agent Runtime -->
+        <div class="stack-card reveal">
+          <div class="stack-layer">Layer 5</div>
+          <h3 class="stack-title">
+            <span class="stack-icon">🤖</span>
+            Agent Runtime
+          </h3>
+          <p class="stack-description">
+            The sovereign agent execution environment. AI that serves you, not platforms.
+          </p>
+          <ul class="stack-features">
+            <li>Local LLM inference</li>
+            <li>Tool use & function calling</li>
+            <li>Privacy-preserving computation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Blog Section -->
+  <section id="blog" class="section blog-section">
+    <div class="blog-container">
+      <h2 class="section-title reveal">Latest Posts</h2>
+      
+      <!-- Blog Controls -->
+      <div class="blog-controls reveal">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="blog-search" placeholder="Search articles...">
+        </div>
+        <div class="tag-filters">
+          <button class="tag-filter active" data-tag="all">All</button>
+          <button class="tag-filter" data-tag="sovereignty">#sovereignty</button>
+          <button class="tag-filter" data-tag="governance">#governance</button>
+          <button class="tag-filter" data-tag="identity">#identity</button>
+          <button class="tag-filter" data-tag="engineering">#engineering</button>
+          <button class="tag-filter" data-tag="philosophy">#philosophy</button>
+        </div>
+      </div>
+      
+      <!-- Blog Grid -->
+      <div class="blog-grid">
+        <!-- Featured Post -->
+        <article class="blog-card featured reveal">
+          <div class="blog-card-image">🚢</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">February 5, 2026</div>
+            <h3 class="blog-card-title">The Tanker and the Submarine: A Tale of Two Architectures</h3>
+            <p class="blog-card-excerpt">
+              Why Ethereum's bloat is a tyranny of commons — and why we chose to build a submarine instead. 
+              A deep dive into architectural decisions that prioritize sovereignty over scale.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#ethereum</span>
+              <span class="blog-card-tag">#vitalik</span>
+              <span class="blog-card-tag">#bloat</span>
+              <span class="blog-card-tag">#architecture</span>
+              <span class="blog-card-tag">#agents</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Regular Posts -->
+        <article class="blog-card reveal">
+          <div class="blog-card-image">📡</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">Feb 8, 2026</div>
+            <h3 class="blog-card-title">Building for the Apocalypse: Offline-First Design</h3>
+            <p class="blog-card-excerpt">
+              Why sovereign infrastructure must work without internet, clouds, or constant connectivity.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#offline</span>
+              <span class="blog-card-tag">#resilience</span>
+              <span class="blog-card-tag">#kenya-rule</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="blog-card reveal">
+          <div class="blog-card-image">🔐</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">Feb 7, 2026</div>
+            <h3 class="blog-card-title">Cryptographic Identity vs. Platform Accounts</h3>
+            <p class="blog-card-excerpt">
+              Why self-sovereign keys beat username/password and OAuth every single time.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#identity</span>
+              <span class="blog-card-tag">#cryptography</span>
+              <span class="blog-card-tag">#privacy</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="blog-card reveal">
+          <div class="blog-card-image">🏛️</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">Feb 6, 2026</div>
+            <h3 class="blog-card-title">The Myth of Decentralized Governance</h3>
+            <p class="blog-card-excerpt">
+              Why DAOs fail and what actually works for collective decision-making.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#governance</span>
+              <span class="blog-card-tag">#dao</span>
+              <span class="blog-card-tag">#decentralization</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="blog-card reveal">
+          <div class="blog-card-image">⚡</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">Feb 5, 2026</div>
+            <h3 class="blog-card-title">Why We Chose Zig Over Rust</h3>
+            <p class="blog-card-excerpt">
+              The case for Zig's explicit simplicity over Rust's complexity in building sovereign systems.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#zig</span>
+              <span class="blog-card-tag">#rust</span>
+              <span class="blog-card-tag">#language</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="blog-card reveal">
+          <div class="blog-card-image">🚪</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">Feb 4, 2026</div>
+            <h3 class="blog-card-title">The Exit Protocol: Building Sovereign Infrastructure</h3>
+            <p class="blog-card-excerpt">
+              Why sovereign agents need sovereign infrastructure — and how we're building the L0-L4 stack.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#libertaria</span>
+              <span class="blog-card-tag">#sovereignty</span>
+              <span class="blog-card-tag">#L0</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="blog-card reveal">
+          <div class="blog-card-image">🎭</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">Feb 3, 2026</div>
+            <h3 class="blog-card-title">Transport Skins: How We Hide in Plain Sight</h3>
+            <p class="blog-card-excerpt">
+              Technical deep dive into DPI evasion techniques used in the Libertaria L0 transport layer.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#transport</span>
+              <span class="blog-card-tag">#DPI</span>
+              <span class="blog-card-tag">#QUIC</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="blog-card reveal">
+          <div class="blog-card-image">💰</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">Feb 2, 2026</div>
+            <h3 class="blog-card-title">No Tokens: Why We Build Infrastructure First</h3>
+            <p class="blog-card-excerpt">
+              The case against token-first development and for revenue-based sovereign infrastructure.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#tokens</span>
+              <span class="blog-card-tag">#infrastructure</span>
+              <span class="blog-card-tag">#economics</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="blog-card reveal">
+          <div class="blog-card-image">📚</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">Feb 2, 2026</div>
+            <h3 class="blog-card-title">The Proto-Dystopia: How Zamyatin's 'We' Invented the Future</h3>
+            <p class="blog-card-excerpt">
+              For Libertaria — culture, literature, and the dystopia we must avoid.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#philosophy</span>
+              <span class="blog-card-tag">#sovereignty</span>
+              <span class="blog-card-tag">#libertaria</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="blog-card reveal">
+          <div class="blog-card-image">☀️</div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">Feb 1, 2026</div>
+            <h3 class="blog-card-title">The Kenya Rule: Engineering for the Edge</h3>
+            <p class="blog-card-excerpt">
+              Why we design for <10MB RAM and solar-powered devices — and what it teaches us about sovereignty.
+            </p>
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">#kenya-rule</span>
+              <span class="blog-card-tag">#engineering</span>
+              <span class="blog-card-tag">#constraints</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      
+      <!-- View All Link -->
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="#" class="btn btn-secondary">View All Posts →</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Newsletter Section -->
+  <section class="section newsletter-section">
+    <div class="newsletter-container reveal">
+      <h2 class="newsletter-title">Join the Resistance</h2>
+      <p class="newsletter-description">
+        Get weekly insights on sovereign infrastructure, cryptographic identity, and the future of human-AI coexistence. No spam. Unsubscribe anytime.
+      </p>
+      <form id="newsletter-form" class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+        <button type="submit" class="btn btn-red">Subscribe</button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- Terminal Demo Section -->
+  <section class="section" style="background: var(--color-black-light);">
+    <div style="max-width: 800px; margin: 0 auto;" class="reveal">
+      <h2 class="section-title">Get Started</h2>
+      <div class="terminal">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-content">
+          <div><span class="prompt">$</span> <span class="command">git clone https://github.com/MarkusMaiwald/libertaria-sdk.git</span></div>
+          <div style="margin-top: 0.5rem;"><span class="prompt">$</span> <span class="command">cd libertaria-sdk</span></div>
+          <div style="margin-top: 0.5rem;"><span class="prompt">$</span> <span class="command">zig build</span></div>
+          <div style="margin-top: 0.5rem; color: var(--color-gold);">Building Libertaria SDK...</div>
+          <div style="color: #00ff00;">✓ Build successful</div>
+          <div style="margin-top: 0.5rem;"><span class="prompt">$</span> <span class="command">./libertaria --help</span></div>
+          <div style="margin-top: 0.5rem; color: var(--color-gray);">
+            Libertaria SDK v0.1.0 - Sovereign Infrastructure Toolkit<br><br>
+            USAGE:<br>
+            &nbsp;&nbsp;libertaria [OPTIONS] [COMMAND]<br><br>
+            COMMANDS:<br>
+            &nbsp;&nbsp;node&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run a sovereign node<br>
+            &nbsp;&nbsp;identity&nbsp;&nbsp;Manage cryptographic identity<br>
+            &nbsp;&nbsp;chapter&nbsp;&nbsp;&nbsp;Create or join a chapter<br>
+            &nbsp;&nbsp;agent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deploy an autonomous agent<br>
+            &nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print this message
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">🜏 Libertaria</div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#stack">Stack</a>
+        <a href="#blog">Blog</a>
+        <a href="https://github.com/MarkusMaiwald/libertaria-sdk" target="_blank">GitHub</a>
+      </div>
+      <div class="footer-copy">© 2026 Libertaria. All rights reserved.</div>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
