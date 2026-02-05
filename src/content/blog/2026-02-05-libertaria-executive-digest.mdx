@@ -1,0 +1,102 @@
+# Libertaria Executive Digest
+
+*For builders with 24-hour brains and infinite curiosity*
+
+---
+
+## The Problem We Solve
+
+**Digital sovereignty doesn't exist yet.**
+
+You don't own your identity (platforms do). You don't own your relationships (they're rented). You can't leave without losing everything (vendor lock-in). 
+
+Libertaria builds the infrastructure where **exit is the default**, not a negotiation.
+
+---
+
+## The Stack in 5 Minutes
+
+### L0: Transport — *Hide in Plain Sight*
+**Problem:** Firewalls block VPNs. Deep packet inspection kills privacy.
+**Solution:** MIMIC skins camouflage traffic as HTTPS, DNS, or QUIC. Looks like Netflix, works like Signal.
+**Key Concept:** "Evade rather than encrypt" — if they can't identify it, they can't block it.
+
+### L1: Identity — *Your Keys, Your Rules*
+**Problem:** Usernames/passwords are surveillance tools. "Sign in with Google" means Google owns your access.
+**Solution:** Self-sovereign DIDs (Decentralized Identifiers) with cryptographic ownership. No platform can revoke your identity.
+**Key Concept:** SoulKey — deterministic key derivation. One seed, infinite identities.
+
+### L2: Session — *Connections That Survive*
+**Problem:** Network partitions kill conversations. IP changes break sessions.
+**Solution:** Resilient peer-to-peer with automatic reconnection, key rotation, and offline-first design.
+**Key Concept:** Exit-first governance — you can fork any conversation without losing history.
+
+### L3: Governance — *Fork, Don't Fight*
+**Problem:** Democracy = tyranny of the majority. Corporate governance = tyranny of the shareholders.
+**Solution:** Chapter-based federation. Local sovereignty with transparent protocols. If you disagree, fork — the protocol supports it.
+**Key Concept:** Betrayal economics — defection is mathematically expensive, cooperation is cheap.
+
+### L4+: SDK — *Build on Sovereign Ground*
+**Problem:** Web3 promised sovereignty, delivered speculation.
+**Solution:** Tools for building apps that inherit cryptographic ownership by default. No tokens. No hype. Just infrastructure.
+
+---
+
+## Why This Matters (The 30,000ft View)
+
+**The old world:** Platforms extract rent from human connection.
+**The new world:** Protocols enable connection without extraction.
+
+We're not building a company. We're building exit infrastructure. When the cage breaks, the tools must already exist.
+
+---
+
+## Key Decisions (Why We Built It This Way)
+
+| Decision | Alternatives | Why We Chose This |
+|:---------|:-------------|:------------------|
+| **Zig, not Rust** | Rust, C++, Go | Explicit memory, comptime, no hidden costs |
+| **No blockchain** | Ethereum, Solana | Chains are just slow databases; we need speed |
+| **Post-quantum by default** | Wait for NIST | Cryptographic resilience is table stakes |
+| **Kenya Rule** | Cloud-first | Must run on $5 Raspberry Pi, offline |
+| **Tiered licensing** | MIT/Apache/GPL | Protect core, enable business, spread ideas |
+
+---
+
+## Start Here
+
+**For Developers:**
+```bash
+git clone https://github.com/libertaria-project/libertaria-stack.git
+cd libertaria-stack
+zig build test  # 166 tests passing
+```
+
+**For Thinkers:**
+- [Why Web3 Failed](https://libertaria.app/blog/2026-02-05-why-web3-failed/) — Our critique of crypto's broken promises
+- [The Conspiracy of -Isms](https://libertaria.app/blog/2026-01-29-the-conspiracy-of--isms/) — Beyond capitalism and socialism
+- [The Sovereign's Survival Guide](https://libertaria.app/blog/2026-02-05-sovereign-survival-guide/) — Practical autonomy
+
+**For Builders:**
+- Read `ONBOARDING.md` — How to contribute
+- Read `DECISIONS.md` — Why we built it this way
+- Read `RFC-0015` — Transport Skins deep dive
+
+---
+
+## The Ask
+
+We don't need investors. We don't need hype. We need:
+
+1. **Code reviewers** — Zig expertise welcome
+2. **Protocol implementers** — Other languages, other platforms
+3. **Exit strategists** — Where does sovereignty matter most?
+4. **Writers** — Explain this to humans who've never thought about cryptographic identity
+
+**Join us:** [github.com/libertaria-project/libertaria-stack](https://github.com/libertaria-project/libertaria-stack)
+
+---
+
+*We do not theorize. We fork the cage.*
+
+⚡️
