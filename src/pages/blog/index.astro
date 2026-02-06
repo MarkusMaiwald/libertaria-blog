@@ -3,10 +3,13 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
-posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const now = new Date();
+// Filter: Only show published articles (pubDate <= now)
+const publishedPosts = posts.filter(p => p.data.pubDate <= now);
+publishedPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const featured = posts.find(p => p.data.featured) || posts[0];
-const regular = posts.filter(p => p !== featured);
+const featured = publishedPosts.find(p => p.data.featured) || publishedPosts[0];
+const regular = publishedPosts.filter(p => p !== featured);
 ---
 
 <Layout title="Blog | Libertaria" description="Sovereign infrastructure, protocols, and the art of building exits.">

@@ -3,9 +3,12 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
-posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const now = new Date();
+// Filter: Only show published articles (pubDate <= now)
+const publishedPosts = posts.filter(p => p.data.pubDate <= now);
+publishedPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const latestPosts = posts.slice(0, 10);
+const latestPosts = publishedPosts.slice(0, 10);
 const featured = latestPosts[0];
 const regular = latestPosts.slice(1, 10);
 ---
