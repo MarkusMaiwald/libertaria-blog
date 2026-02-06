@@ -1,6 +1,6 @@
 # Cloudflare Worker configuration for Libertaria Newsletter API
 name = "libertaria-newsletter"
-main = "api/worker.ts"
+main = "api/newsletter-worker.ts"
 compatibility_date = "2024-01-01"
 
 # D1 Database binding
@@ -15,3 +15,6 @@ database_id = "YOUR_DATABASE_ID_HERE"
 
 # Routes
 triggers = { routes = ["api.libertaria.app/*"] }
+
+# Pages build output
+pages_build_output_dir = "dist"
