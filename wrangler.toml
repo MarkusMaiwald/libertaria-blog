@@ -1,3 +1,17 @@
-name = "libertaria-blog"
-compatibility_date = "2026-02-05"
-pages_build_output_dir = "./dist"
+# Cloudflare Worker configuration for Libertaria Newsletter API
+name = "libertaria-newsletter"
+main = "api/worker.ts"
+compatibility_date = "2024-01-01"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "libertaria-newsletter"
+database_id = "YOUR_DATABASE_ID_HERE"
+
+# Environment variables (set via wrangler secret)
+[vars]
+# These are public vars - secrets go in wrangler secret
+
+# Routes
+triggers = { routes = ["api.libertaria.app/*"] }
