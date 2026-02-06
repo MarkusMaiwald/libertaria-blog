@@ -123,25 +123,25 @@ const { title, description = 'Sovereign; Kinetic; Anti-Fragile.' } = Astro.props
 				border-radius: 4px;
 			}
 
-			/* Global Link Styling - Gold/Red Theme */
+			/* Global Link Styling - Flipped: Red -> Gold */
 			a {
-				color: var(--accent);
+				color: var(--color-red);
 				text-decoration: underline;
-				text-decoration-color: rgba(255, 184, 0, 0.4);
+				text-decoration-color: rgba(255, 26, 26, 0.4);
 				transition: color 0.2s ease, text-decoration-color 0.2s ease;
 			}
 
 			a:hover {
-				color: var(--red);
-				text-decoration-color: var(--red);
+				color: var(--color-gold);
+				text-decoration-color: var(--color-gold);
 			}
 
 			a:visited {
-				color: var(--accent-light);
+				color: var(--color-gold);
 			}
 
 			a:visited:hover {
-				color: var(--red);
+				color: var(--color-red);
 			}
 
 			/* Active Navigation Indicator */
