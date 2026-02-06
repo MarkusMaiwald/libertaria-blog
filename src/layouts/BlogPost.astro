@@ -158,4 +158,25 @@ const { Content } = await post.render();
 	.content :global(li) {
 		margin: 0.5rem 0;
 	}
+	
+	/* Link styling to match frontpage theme */
+	.content :global(a) {
+		color: var(--accent);
+		text-decoration: underline;
+		text-decoration-color: rgba(255, 184, 0, 0.5);
+		transition: color 0.2s ease, text-decoration-color 0.2s ease;
+	}
+	
+	.content :global(a:hover) {
+		color: var(--red);
+		text-decoration-color: var(--red);
+	}
+	
+	.content :global(a:visited) {
+		color: var(--accent-light);
+	}
+	
+	.content :global(a:visited:hover) {
+		color: var(--red);
+	}
 </style>
