@@ -7,14 +7,16 @@ compatibility_date = "2024-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "libertaria-newsletter"
-database_id = "YOUR_DATABASE_ID_HERE"
+database_id = "9f96c763-7bd9-478e-b2ee-b2afbe6614bd"
 
 # Environment variables (set via wrangler secret)
 [vars]
 # These are public vars - secrets go in wrangler secret
 
 # Routes
-triggers = { routes = ["api.libertaria.app/*"] }
+routes = [
+  { pattern = "api.libertaria.app", custom_domain = true }
+]
 
 # Pages build output
 pages_build_output_dir = "dist"
