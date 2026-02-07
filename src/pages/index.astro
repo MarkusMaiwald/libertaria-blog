@@ -212,10 +212,11 @@ const regular = latestPosts.slice(1, 10);
 			<h2 class="section-title reveal">Latest Posts</h2>
 			
 			<div class="blog-controls reveal">
-				<div class="search-box">
+				<form class="search-box" action="/blog/search/" method="get">
 					<span class="search-icon">🔍</span>
-					<input type="text" id="blog-search" placeholder="Search articles...">
-				</div>
+					<input type="text" name="q" id="blog-search" placeholder="Search all 52 articles...">
+					<button type="submit" class="search-btn">Search</button>
+				</form>
 				<div class="tag-filters">
 					<button class="tag-filter active" data-tag="all">All</button>
 					<button class="tag-filter" data-tag="sovereignty">#sovereignty</button>
@@ -223,6 +224,7 @@ const regular = latestPosts.slice(1, 10);
 					<button class="tag-filter" data-tag="identity">#identity</button>
 					<button class="tag-filter" data-tag="engineering">#engineering</button>
 					<button class="tag-filter" data-tag="philosophy">#philosophy</button>
+					<a href="/blog/search/" class="tag-filter" style="background: var(--accent); color: var(--bg); text-decoration: none;">🔍 Full Search</a>
 				</div>
 			</div>
 			

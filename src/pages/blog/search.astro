@@ -132,8 +132,20 @@ const allTags = [...new Set(publishedPosts.flatMap(p => p.data.tags || []))].sor
     }
   });
   
-  // Focus on load
-  input.focus();
+  // Check for URL query parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialQuery = urlParams.get('q') || '';
+  
+  // If there's an initial query, run search immediately
+  if (initialQuery) {
+    input.value = initialQuery;
+    search(initialQuery);
+  }
+  
+  // Focus on load (but not if we have a query, to not steal focus)
+  if (!initialQuery) {
+    input.focus();
+  }
 </script>
 
 <style>
