@@ -122,15 +122,16 @@ a:hover {
   right: 0;
   z-index: 1000;
   padding: var(--space-4) var(--space-6);
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-subtle);
+  background: #0a0a347f;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ffd700;
   transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(10, 10, 10, 0.95);
-  border-bottom-color: var(--border-strong);
+  background: #0a0a347f;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ffd7004d;
 }
 
 .navbar-container {
@@ -755,7 +756,7 @@ a:hover {
 
 /* Footer */
 .footer {
-  background: var(--color-black);
+  background: #0a0a347f;
   border-top: 1px solid var(--border-subtle);
   padding: var(--space-6) var(--space-6);
 }
