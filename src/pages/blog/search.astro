@@ -6,7 +6,7 @@ const posts = await getCollection('blog');
 const now = new Date();
 const publishedPosts = posts.filter(p => p.data.pubDate <= now);
 
-// Build search index
+// Build search index as JSON string
 const searchData = publishedPosts.map(post => ({
   slug: post.slug,
   title: post.data.title,
@@ -19,6 +19,8 @@ const searchData = publishedPosts.map(post => ({
   }),
   searchText: `${post.data.title} ${post.data.description} ${(post.data.tags || []).join(' ')}`.toLowerCase()
 }));
+
+const searchDataJson = JSON.stringify(searchData);
 
 // Get all unique tags
 const allTags = [...new Set(publishedPosts.flatMap(p => p.data.tags || []))].sort();
@@ -54,7 +56,10 @@ const allTags = [...new Set(publishedPosts.flatMap(p => p.data.tags || []))].sor
   </section>
 </Layout>
 
-<script define:vars={{ searchData }}>
+<script is:inline define:vars={{ searchDataJson }}>
+  // Parse the search data
+  const searchData = JSON.parse(searchDataJson);
+  
   const input = document.getElementById('search-input');
   const resultsDiv = document.getElementById('search-results');
   const statsDiv = document.getElementById('search-stats');
@@ -66,7 +71,7 @@ const allTags = [...new Set(publishedPosts.flatMap(p => p.data.tags || []))].sor
       return;
     }
     
-    const q = query.toLowerCase();
+    const q = query.toLowerCase().trim();
     const matches = searchData.filter(item => 
       item.searchText.includes(q) ||
       item.title.toLowerCase().includes(q) ||
