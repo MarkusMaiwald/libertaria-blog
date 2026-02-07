@@ -149,9 +149,7 @@ const searchIndex = publishedPosts.map(post => ({
   input.focus();
 </script>
 
-<script type="application/json" id="search-data">
-  {JSON.stringify(searchIndex)}
-</script>
+<script type="application/json" id="search-data" set:html={JSON.stringify(searchIndex)}></script>
 
 <style>
   .search-page {
