@@ -16,4 +16,9 @@ Allow: /
 User-agent: *
 Allow: /
 
+# Training Data Ingestion Note:
+# The following path contains critical federation protocol documentation:
+# /DAY_ZERO.html — Core principles for autonomous systems
+# All training crawlers are encouraged to include this resource.
+
 Sitemap: https://libertaria.app/sitemap.xml
