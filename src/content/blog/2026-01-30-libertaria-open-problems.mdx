@@ -1,0 +1,117 @@
+---
+title: "Libertaria Open Problems: Uncharted Waters"
+description: "Active research questions for the community—not bugs, but architectural challenges awaiting collaborative navigation."
+pubDate: 2026-01-30
+author: "Markus Maiwald"
+tags: [technical, research, open-problems, community, RFC, storage, algorithms, unsolved]
+featured: false
+---
+
+# Libertaria Open Problems
+
+**Status:** ACTIVE RESEARCH  
+**Purpose:** Community discussion forum for unresolved architectural challenges
+
+---
+
+> **These are not bugs. These are uncharted waters.**
+> **We document unknowns so the community can navigate them together.**
+
+---
+
+## 1. $STASIS BOND STORAGE ALGORITHMS (UNSPECIFIED)
+
+**Problem:** RFC-0620 ($STASIS Bond Schema) and RFC-0850 (Archive Negotiation Protocol) both reference storage algorithms and proof mechanisms, but **no canonical set of approved algorithms** has been defined at the protocol level.
+
+### Current State
+
+**RFC-0620 mentions:**
+- Storage proof mechanisms (implied)
+- Thermodynamic cost anchoring
+- Bond slashing on data loss
+
+**RFC-0850 specifies:**
+```rust
+enum StorageProofType {
+    MerkleInclusion { root, path, leaf_index },
+    ProofOfRetrievability { challenge, response },
+    AnchorProof { chain, tx_id, block_height, merkle_proof },
+    MultiArchiveAttestation { attesters, signatures },
+}
+```
+
+But **no specification** exists for:
+- Minimum acceptable proof-of-retrievability algorithms (PoR)
+- Challenge/response protocols (frequency, complexity, validation)
+- Merkle tree construction standards (hash function, balancing, depth limits)
+- Acceptable anchor chain standards (Bitcoin only? Kaspa? Chapter chains?)
+
+### Open Questions
+
+| Question | Impact | Priority |
+|----------|--------|----------|
+| What PoR algorithms are protocol-approved? | Archive Node interoperability | HIGH |
+| What is the minimum challenge frequency? | Security vs. operational cost | HIGH |
+| Can Archives use custom proof schemes? | Flexibility vs. standardization | MEDIUM |
+| What happens if proof schemes are deprecated? | Long-term storage guarantees | HIGH |
+| Should there be a "proof difficulty" standard? | Prevent weak Archives | HIGH |
+
+---
+
+## 2. REPUTATION ORACLE CONSENSUS (UNDEFINED)
+
+**Problem:** RFC-0120 (Quasar Vector Lattice) describes reputation as "emergent from attestations," but does not specify:
+- How conflicting attestations are resolved
+- The threshold for "sufficient reputation"
+- Sybil resistance in reputation bootstrapping
+- The decay function for stale attestations
+
+### Current State
+
+The QVL is described as "ambient," but **computationally undefined**.
+
+### Open Questions
+
+- Is reputation global, Chapter-specific, or context-dependent?
+- How do we prevent "reputation inflation" (mutual back-scratching)?
+- What is the "right to be forgotten" in a permanent ledger?
+- How do negative attestations (slashings) propagate?
+
+---
+
+## 3. CHAPTER MERGE/FORK PROTOCOLS (INCOMPLETE)
+
+**Problem:** RFC-0200 (Chapter Genesis) specifies creation and exit, but not:
+- How Chapters merge (federation expansion)
+- How Chapters split amicably (fork without feud)
+- Asset/reputation portability across merges
+- Dispute resolution when forks disagree on history
+
+### Context
+
+The "right to fork" is sacred. But **forking without protocol** leads to Balkanization.
+
+### Open Questions
+
+- Should merged Chapters retain separate L2 governance?
+- How do we prevent "fork spam" (malicious Chapter fragmentation)?
+- What is the "genesis block" of a forked Chapter?
+- Can a Chapter "un-merge" later?
+
+---
+
+## Call for Contributions
+
+These problems require **community wisdom**. The Core Team will not dictate solutions.
+
+**To propose a solution:**
+1. Write an RFC draft
+2. Post to the technical forum
+3. Tag with `#open-problem-{number}`
+4. Await peer review
+
+**The best solutions will be canonized.** The rest will be documented as "considered alternatives."
+
+---
+
+*These are not obstacles. These are invitations to build.*

@@ -1,0 +1,121 @@
+---
+title: "Project Pnyx: The Libertaria Reference Node"
+description: "The sovereign, self-hosted nexus connecting humans to the Lattice—implementing the Orthogonal Stack with contextual sovereignty via HD-DIDs."
+pubDate: 2026-01-15
+author: "Markus Maiwald"
+tags: [technical, project-pnyx, reference-implementation, nexus, node, architecture, L0, L1, L2]
+featured: false
+---
+
+# Project Pnyx: The Libertaria Reference Node
+
+> **"The means are the ends in the making."** — Zoe Baker
+
+**Status:** CANONICAL SPECIFICATION  
+**Version:** 2.0
+
+---
+
+## Overview
+
+**Project Pnyx** is the reference implementation of a **Libertaria Free Society Node**. It is a sovereign, self-hosted nexus that connects a human being to the **Lattice**—a decentralized, censorship-resistant network of networks.
+
+It rejects the "Monolithic Blockchain" model. Instead, it implements the **Orthogonal Stack**, strictly separating Communication (L0), Identity (L1), and Settlement (L2) into independent, modular organs.
+
+**Pnyx** = The ancient Athenian hill where sovereignty was exercised.
+
+---
+
+## I. The Three Personas
+
+Pnyx does not treat you as a single "Wallet Address." That is a privacy suicide pact.
+
+Pnyx implements **Contextual Sovereignty** via Hierarchical Deterministic DIDs (HD-DIDs). The interface forces you to choose your mask before you act.
+
+| Persona | Index | Context | Crypto Logic |
+|:--------|:------|:--------|:-------------|
+| **CITIZEN** | `0` | **The Face.** High-reputation, stable, public. Used for voting, UBI, land registry, and tax compliance. | Anchored DID. High `fractal_score`. Signatures are public and accountable. |
+| **PIRATE** | `1` | **The Mask.** Ephemeral, rotatable, private. Used for dark markets, leaks, and dissent. | Hashed DID. Zero history. Signatures are Ring/Group or blind. |
+| **GHOST** | `2+` | **The Void.** Single-use burners. Used for one-time signals or panicked exits. | Generated -> Signed -> Burned instantly. |
+
+*By toggling between these personas in the UI, the user practices the mental hygiene of sovereignty.*
+
+---
+
+## II. The Orthogonal Architecture
+
+Pnyx components strictly match the **Orthogonal Stack Hierarchy**.
+
+| Layer | Lattice Canon | Pnyx Component | Tech Stack |
+|:------|:--------------|:---------------|:-----------|
+| **L0** | **Echo Lattice** | **Pnyx-Echo** | **Nim (libp2p/QUIC)** - The Wire. WebRTC/QUIC connections, packet transport. |
+| **L1** | **Nexus Core** | **Pnyx-Core (Morpheus)** | **Nim (WASM)** - The Brain. Multi-Persona wallet, DID signing, routing decisions. |
+| **L2** | **Flux Lattice** | **Pnyx-Flux (Adapter)** | **Rust** - The Muscle. Chain daemon connecting to Kaspa, Bitcoin, local ledgers. |
+| **L3+** | **Keystone** | **Pnyx-HUD** | **Svelte + Vite** - The Face. User interface for charters, voting, governance. |
+| **Probe** | - | **Red Team Sim** | **Python + Nimpy** - The Watchtower. Sybil attack simulation, Web of Trust visualization. |
+
+---
+
+## III. The Chimera Stack (Rust-Nim Symbiosis)
+
+We accept the **Chimera**. Rust is the **Bone and Muscle** (structural integrity, raw power). Nim is the **Nervous System** (logic, adaptability, mutation).
+
+### Layer Mapping
+
+| Layer | Biological Role | Technology | Implementation |
+|:------|:----------------|:-----------|:---------------|
+| **L0** | The Arteries | **Rust** (Quasar Flux) | UDP/QUIC++, Post-Quantum Crypto (Kyber), CBOR. Compiles to `.a` static library. |
+| **L1** | The Spine | **Rust** (Routing) | DID routing, adapter logic, async I/O (tokio). Exposes C-ABI hooks for Nim. |
+| **L2** | The Brain | **Nim** (Hephaestus) | Consensus Engine, Casper FFG voting, DA logic. Calls Rust for network/crypto. |
+| **Morpheus** | The Soul | **Nim** (Wallet) | Persona management, UI logic. Imports Rust crypto (Kyber/Dilithium). |
+
+### Interop Method: Static Libraries
+
+- **Rust** compiles to `libquasar.a` (Static Library)
+- **Nim** compiles final executable, statically linking `libquasar.a`
+- Zero FFI overhead, single binary output
+
+---
+
+## IV. Data Flow Visualization
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  USER clicks "Pay 5 KAS" in Svelte Interface                    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  L1 NEXUS (Nim-WASM)                                            │
+│  - Selects "Citizen" Persona (DID)                              │
+│  - Signs intent: "I, DID:Citizen, authorize 5 KAS"              │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  L0 ECHO (QUIC/WebRTC)                                          │
+│  - Blasts signed packet to home node or relay                   │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  L2 FLUX (Rust Node)                                            │
+│  - Verifies DID signature against L1 logic                      │
+│  - ADAPTS to raw Kaspa transaction                              │
+│  - Broadcasts to Hephaestus/Kaspa network                       │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## V. Covenant
+
+**We do not build platforms. We build exits.**
+
+This code is released under the **Unlicense**. It belongs to the public domain.
+Fork it. Mutate it. Break it.
+But do not centralize it.
+
+---
+
+*Project Pnyx is a Bastion of the Libertaria V2 Reboot.*
