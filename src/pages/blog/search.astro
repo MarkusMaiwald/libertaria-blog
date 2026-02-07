@@ -69,7 +69,9 @@ const searchIndex = publishedPosts.map(post => ({
       { name: 'content', weight: 0.2 },
       { name: 'tags', weight: 0.1 },
     ],
-    threshold: 0.3,
+    threshold: 0.4,
+    ignoreLocation: true,
+    minMatchCharLength: 2,
     includeScore: true,
     includeMatches: true,
   });
