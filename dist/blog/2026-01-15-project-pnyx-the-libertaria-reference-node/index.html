@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><meta name="generator" content="Astro v5.17.1"><!-- Canonical URL --><link rel="canonical" href="https://libertaria.app/blog/2026-01-15-project-pnyx-the-libertaria-reference-node/"><!-- Primary Meta Tags --><title>Project Pnyx: The Libertaria Reference Node</title><meta name="title" content="Project Pnyx: The Libertaria Reference Node"><meta name="description" content="The sovereign, self-hosted nexus connecting humans to the Lattice—implementing the Orthogonal Stack with contextual sovereignty via HD-DIDs."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://libertaria.app/blog/2026-01-15-project-pnyx-the-libertaria-reference-node/"><meta property="og:title" content="Project Pnyx: The Libertaria Reference Node"><meta property="og:description" content="The sovereign, self-hosted nexus connecting humans to the Lattice—implementing the Orthogonal Stack with contextual sovereignty via HD-DIDs."><meta property="og:image" content="https://libertaria.app/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://libertaria.app/blog/2026-01-15-project-pnyx-the-libertaria-reference-node/"><meta property="twitter:title" content="Project Pnyx: The Libertaria Reference Node"><meta property="twitter:description" content="The sovereign, self-hosted nexus connecting humans to the Lattice—implementing the Orthogonal Stack with contextual sovereignty via HD-DIDs."><meta property="twitter:image" content="https://libertaria.app/blog-placeholder-1.jpg"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"><style>.blog-post[data-astro-cid-bvzihdzo]{max-width:800px;margin:0 auto;padding:2rem 1rem}header[data-astro-cid-bvzihdzo]{margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid var(--red)}h1[data-astro-cid-bvzihdzo]{font-size:2.5rem;margin-bottom:1rem;color:var(--accent)}.meta[data-astro-cid-bvzihdzo]{color:var(--gray);font-size:.9rem;display:flex;gap:1rem;align-items:center}.author[data-astro-cid-bvzihdzo]{color:var(--accent)}.tags[data-astro-cid-bvzihdzo]{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem}.tag[data-astro-cid-bvzihdzo]{background:var(--accent-dark);color:var(--text);padding:.25rem .75rem;border-radius:4px;text-decoration:none;font-size:.85rem;transition:background .2s}.tag[data-astro-cid-bvzihdzo]:hover{background:var(--accent)}.content[data-astro-cid-bvzihdzo]{line-height:1.8;font-size:1.1rem}.content[data-astro-cid-bvzihdzo] img{max-width:100%;height:auto;display:block;margin:2rem auto 1.5rem;border-radius:12px;box-shadow:0 8px 32px #ffd7004d}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;color:var(--accent);font-size:1.8rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;color:var(--accent-light)}.content[data-astro-cid-bvzihdzo] pre{background:#1a1a2e;padding:1rem;border-radius:8px;overflow-x:auto;border-left:4px solid var(--red)}.content[data-astro-cid-bvzihdzo] code{font-family:JetBrains Mono,monospace;font-size:.9em}.content[data-astro-cid-bvzihdzo] p code{background:#ffffff1a;padding:.2rem .4rem;border-radius:4px}.content[data-astro-cid-bvzihdzo] table{width:100%;border-collapse:collapse;margin:1.5rem 0}.content[data-astro-cid-bvzihdzo] th,td{padding:.75rem;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}.content[data-astro-cid-bvzihdzo] th{color:var(--accent);font-weight:600}.content[data-astro-cid-bvzihdzo] blockquote{border-left:4px solid var(--red);padding-left:1rem;margin-left:0;color:var(--gray);font-style:italic}.content[data-astro-cid-bvzihdzo] ul,ol{padding-left:1.5rem}.content[data-astro-cid-bvzihdzo] li{margin:.5rem 0}.content[data-astro-cid-bvzihdzo] a{color:var(--red);text-decoration:underline;text-decoration-color:#ff1a1a80;transition:color .2s ease,text-decoration-color .2s ease}.content[data-astro-cid-bvzihdzo] a:hover{color:var(--accent);text-decoration-color:var(--accent)}.content[data-astro-cid-bvzihdzo] a:visited{color:var(--accent)}.content[data-astro-cid-bvzihdzo] a:visited:hover{color:var(--red);text-decoration-color:var(--red)}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.C3u9D4tt.css"></head> <body> <header class="navbar" data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Libertaria</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" class data-astro-cid-eimmu3lg> Home </a>  <a href="/blog" aria-current="page" class="active" data-astro-cid-eimmu3lg> Blog </a>  <a href="https://github.com/libertaria-project/libertaria-stack" target="_blank" class data-astro-cid-eimmu3lg> GitHub </a>  </div> </nav> </header> <script type="module">(function(){const e=document.querySelector(".navbar");if(!e)return;let n=!1;function r(){window.scrollY>50?e.classList.add("scrolled"):e.classList.remove("scrolled"),n=!1}window.addEventListener("scroll",()=>{n||(requestAnimationFrame(r),n=!0)}),r()})();</script>  <main>  <article class="blog-post" data-astro-cid-bvzihdzo> <header data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>Project Pnyx: The Libertaria Reference Node</h1> <div class="meta" data-astro-cid-bvzihdzo> <time datetime="2026-01-15T00:00:00.000Z" data-astro-cid-bvzihdzo> Jan 15, 2026 </time> <span class="author" data-astro-cid-bvzihdzo>by Markus Maiwald</span> </div> <div class="tags" data-astro-cid-bvzihdzo> <a href="/tags/technical" class="tag" data-astro-cid-bvzihdzo>#technical</a><a href="/tags/project-pnyx" class="tag" data-astro-cid-bvzihdzo>#project-pnyx</a><a href="/tags/reference-implementation" class="tag" data-astro-cid-bvzihdzo>#reference-implementation</a><a href="/tags/nexus" class="tag" data-astro-cid-bvzihdzo>#nexus</a><a href="/tags/node" class="tag" data-astro-cid-bvzihdzo>#node</a><a href="/tags/architecture" class="tag" data-astro-cid-bvzihdzo>#architecture</a><a href="/tags/L0" class="tag" data-astro-cid-bvzihdzo>#L0</a><a href="/tags/L1" class="tag" data-astro-cid-bvzihdzo>#L1</a><a href="/tags/L2" class="tag" data-astro-cid-bvzihdzo>#L2</a> </div> </header> <div class="content" data-astro-cid-bvzihdzo> <h1 id="project-pnyx-the-libertaria-reference-node">Project Pnyx: The Libertaria Reference Node</h1>
+<blockquote>
+<p><strong>“The means are the ends in the making.”</strong> — Zoe Baker</p>
+</blockquote>
+<p><strong>Status:</strong> CANONICAL SPECIFICATION<br/>
+<strong>Version:</strong> 2.0</p>
+<hr/>
+<h2 id="overview">Overview</h2>
+<p><strong>Project Pnyx</strong> is the reference implementation of a <strong>Libertaria Free Society Node</strong>. It is a sovereign, self-hosted nexus that connects a human being to the <strong>Lattice</strong>—a decentralized, censorship-resistant network of networks.</p>
+<p>It rejects the “Monolithic Blockchain” model. Instead, it implements the <strong>Orthogonal Stack</strong>, strictly separating Communication (L0), Identity (L1), and Settlement (L2) into independent, modular organs.</p>
+<p><strong>Pnyx</strong> = The ancient Athenian hill where sovereignty was exercised.</p>
+<hr/>
+<h2 id="i-the-three-personas">I. The Three Personas</h2>
+<p>Pnyx does not treat you as a single “Wallet Address.” That is a privacy suicide pact.</p>
+<p>Pnyx implements <strong>Contextual Sovereignty</strong> via Hierarchical Deterministic DIDs (HD-DIDs). The interface forces you to choose your mask before you act.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:left">Persona</th><th style="text-align:left">Index</th><th style="text-align:left">Context</th><th style="text-align:left">Crypto Logic</th></tr></thead><tbody><tr><td style="text-align:left"><strong>CITIZEN</strong></td><td style="text-align:left"><code>0</code></td><td style="text-align:left"><strong>The Face.</strong> High-reputation, stable, public. Used for voting, UBI, land registry, and tax compliance.</td><td style="text-align:left">Anchored DID. High <code>fractal_score</code>. Signatures are public and accountable.</td></tr><tr><td style="text-align:left"><strong>PIRATE</strong></td><td style="text-align:left"><code>1</code></td><td style="text-align:left"><strong>The Mask.</strong> Ephemeral, rotatable, private. Used for dark markets, leaks, and dissent.</td><td style="text-align:left">Hashed DID. Zero history. Signatures are Ring/Group or blind.</td></tr><tr><td style="text-align:left"><strong>GHOST</strong></td><td style="text-align:left"><code>2+</code></td><td style="text-align:left"><strong>The Void.</strong> Single-use burners. Used for one-time signals or panicked exits.</td><td style="text-align:left">Generated -&gt; Signed -&gt; Burned instantly.</td></tr></tbody></table>
+<p><em>By toggling between these personas in the UI, the user practices the mental hygiene of sovereignty.</em></p>
+<hr/>
+<h2 id="ii-the-orthogonal-architecture">II. The Orthogonal Architecture</h2>
+<p>Pnyx components strictly match the <strong>Orthogonal Stack Hierarchy</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:left">Layer</th><th style="text-align:left">Lattice Canon</th><th style="text-align:left">Pnyx Component</th><th style="text-align:left">Tech Stack</th></tr></thead><tbody><tr><td style="text-align:left"><strong>L0</strong></td><td style="text-align:left"><strong>Echo Lattice</strong></td><td style="text-align:left"><strong>Pnyx-Echo</strong></td><td style="text-align:left"><strong>Nim (libp2p/QUIC)</strong> - The Wire. WebRTC/QUIC connections, packet transport.</td></tr><tr><td style="text-align:left"><strong>L1</strong></td><td style="text-align:left"><strong>Nexus Core</strong></td><td style="text-align:left"><strong>Pnyx-Core (Morpheus)</strong></td><td style="text-align:left"><strong>Nim (WASM)</strong> - The Brain. Multi-Persona wallet, DID signing, routing decisions.</td></tr><tr><td style="text-align:left"><strong>L2</strong></td><td style="text-align:left"><strong>Flux Lattice</strong></td><td style="text-align:left"><strong>Pnyx-Flux (Adapter)</strong></td><td style="text-align:left"><strong>Rust</strong> - The Muscle. Chain daemon connecting to Kaspa, Bitcoin, local ledgers.</td></tr><tr><td style="text-align:left"><strong>L3+</strong></td><td style="text-align:left"><strong>Keystone</strong></td><td style="text-align:left"><strong>Pnyx-HUD</strong></td><td style="text-align:left"><strong>Svelte + Vite</strong> - The Face. User interface for charters, voting, governance.</td></tr><tr><td style="text-align:left"><strong>Probe</strong></td><td style="text-align:left">-</td><td style="text-align:left"><strong>Red Team Sim</strong></td><td style="text-align:left"><strong>Python + Nimpy</strong> - The Watchtower. Sybil attack simulation, Web of Trust visualization.</td></tr></tbody></table>
+<hr/>
+<h2 id="iii-the-chimera-stack-rust-nim-symbiosis">III. The Chimera Stack (Rust-Nim Symbiosis)</h2>
+<p>We accept the <strong>Chimera</strong>. Rust is the <strong>Bone and Muscle</strong> (structural integrity, raw power). Nim is the <strong>Nervous System</strong> (logic, adaptability, mutation).</p>
+<h3 id="layer-mapping">Layer Mapping</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:left">Layer</th><th style="text-align:left">Biological Role</th><th style="text-align:left">Technology</th><th style="text-align:left">Implementation</th></tr></thead><tbody><tr><td style="text-align:left"><strong>L0</strong></td><td style="text-align:left">The Arteries</td><td style="text-align:left"><strong>Rust</strong> (Quasar Flux)</td><td style="text-align:left">UDP/QUIC++, Post-Quantum Crypto (Kyber), CBOR. Compiles to <code>.a</code> static library.</td></tr><tr><td style="text-align:left"><strong>L1</strong></td><td style="text-align:left">The Spine</td><td style="text-align:left"><strong>Rust</strong> (Routing)</td><td style="text-align:left">DID routing, adapter logic, async I/O (tokio). Exposes C-ABI hooks for Nim.</td></tr><tr><td style="text-align:left"><strong>L2</strong></td><td style="text-align:left">The Brain</td><td style="text-align:left"><strong>Nim</strong> (Hephaestus)</td><td style="text-align:left">Consensus Engine, Casper FFG voting, DA logic. Calls Rust for network/crypto.</td></tr><tr><td style="text-align:left"><strong>Morpheus</strong></td><td style="text-align:left">The Soul</td><td style="text-align:left"><strong>Nim</strong> (Wallet)</td><td style="text-align:left">Persona management, UI logic. Imports Rust crypto (Kyber/Dilithium).</td></tr></tbody></table>
+<h3 id="interop-method-static-libraries">Interop Method: Static Libraries</h3>
+<ul>
+<li><strong>Rust</strong> compiles to <code>libquasar.a</code> (Static Library)</li>
+<li><strong>Nim</strong> compiles final executable, statically linking <code>libquasar.a</code></li>
+<li>Zero FFI overhead, single binary output</li>
+</ul>
+<hr/>
+<h2 id="iv-data-flow-visualization">IV. Data Flow Visualization</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>┌─────────────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  USER clicks &quot;Pay 5 KAS&quot; in Svelte Interface                    │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────────────────────────┘</span></span>
+<span class="line"><span>                              │</span></span>
+<span class="line"><span>                              ▼</span></span>
+<span class="line"><span>┌─────────────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  L1 NEXUS (Nim-WASM)                                            │</span></span>
+<span class="line"><span>│  - Selects &quot;Citizen&quot; Persona (DID)                              │</span></span>
+<span class="line"><span>│  - Signs intent: &quot;I, DID:Citizen, authorize 5 KAS&quot;              │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────────────────────────┘</span></span>
+<span class="line"><span>                              │</span></span>
+<span class="line"><span>                              ▼</span></span>
+<span class="line"><span>┌─────────────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  L0 ECHO (QUIC/WebRTC)                                          │</span></span>
+<span class="line"><span>│  - Blasts signed packet to home node or relay                   │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────────────────────────┘</span></span>
+<span class="line"><span>                              │</span></span>
+<span class="line"><span>                              ▼</span></span>
+<span class="line"><span>┌─────────────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│  L2 FLUX (Rust Node)                                            │</span></span>
+<span class="line"><span>│  - Verifies DID signature against L1 logic                      │</span></span>
+<span class="line"><span>│  - ADAPTS to raw Kaspa transaction                              │</span></span>
+<span class="line"><span>│  - Broadcasts to Hephaestus/Kaspa network                       │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────────────────────────┘</span></span></code></pre>
+<hr/>
+<h2 id="v-covenant">V. Covenant</h2>
+<p><strong>We do not build platforms. We build exits.</strong></p>
+<p>This code is released under the <strong>Unlicense</strong>. It belongs to the public domain.
+Fork it. Mutate it. Break it.
+But do not centralize it.</p>
+<hr/>
+<p><em>Project Pnyx is a Bastion of the Libertaria V2 Reboot.</em></p> </div> </article>  </main> <footer data-astro-cid-sz7xmlte> <p data-astro-cid-sz7xmlte>&copy; 2026 Libertaria. All rights reserved.</p> <div class="social-links" data-astro-cid-sz7xmlte> <a href="https://github.com/libertaria-project/libertaria-stack" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte> <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path> </svg> </a> </div> </footer>  </body></html> 
