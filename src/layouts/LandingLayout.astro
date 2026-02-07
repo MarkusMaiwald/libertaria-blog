@@ -97,9 +97,10 @@ const { title, description = 'Sovereign; Kinetic; Anti-Fragile.' } = Astro.props
 
 			/* Fix 4: Scroll-Linked Navbar Enhancement */
 			.navbar {
-				background: rgba(10, 10, 10, 0.7);
+				background: #0a0a347f;
 				backdrop-filter: blur(10px);
 				-webkit-backdrop-filter: blur(10px);
+				border-bottom: 1px solid #ffd700;
 				transition: background var(--duration-base) var(--ease-out-expo),
 				            backdrop-filter var(--duration-base) var(--ease-out-expo),
 				            -webkit-backdrop-filter var(--duration-base) var(--ease-out-expo),
@@ -107,10 +108,10 @@ const { title, description = 'Sovereign; Kinetic; Anti-Fragile.' } = Astro.props
 			}
 
 			.navbar.scrolled {
-				background: rgba(10, 10, 10, 0.95);
-				backdrop-filter: blur(20px);
-				-webkit-backdrop-filter: blur(20px);
-				border-bottom-color: rgba(255, 215, 0, 0.3);
+				background: #0a0a347f;
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				border-bottom: 1px solid #ffd7004d;
 			}
 
 			/* Enhanced Micro-interactions with Premium Easing */
