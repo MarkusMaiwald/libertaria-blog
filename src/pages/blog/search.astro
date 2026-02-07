@@ -1,0 +1,325 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const now = new Date();
+const publishedPosts = posts.filter(p => p.data.pubDate <= now);
+
+// Create searchable index data
+const searchIndex = publishedPosts.map(post => ({
+  slug: post.slug,
+  title: post.data.title,
+  description: post.data.description,
+  content: post.body?.slice(0, 2000) || '', // First 2000 chars for indexing
+  tags: post.data.tags || [],
+  pubDate: post.data.pubDate.toISOString(),
+  dateFormatted: post.data.pubDate.toLocaleDateString('en-us', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }),
+}));
+---
+
+<Layout title="Search | Libertaria" description="Search all articles on sovereign infrastructure, protocols, and exits.">
+  <section class="search-page">
+    <h1>🔍 Search</h1>
+    
+    <div class="search-box">
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Search articles, axioms, concepts..."
+        autocomplete="off"
+      />
+      <span class="search-hint">Press / to focus</span>
+    </div>
+    
+    <div id="search-stats" class="stats"></div>
+    
+    <div id="search-results" class="results">
+      <p class="placeholder">Start typing to search across {publishedPosts.length} articles...</p>
+    </div>
+    
+    <div class="popular-searches">
+      <h3>Popular:</h3>
+      <div class="tags">
+        <button class="tag-btn" data-query="axiom">axioms</button>
+        <button class="tag-btn" data-query="sovereignty">sovereignty</button>
+        <button class="tag-btn" data-query="AI">AI</button>
+        <button class="tag-btn" data-query="protocol">protocol</button>
+        <button class="tag-btn" data-query="exit">exit</button>
+        <button class="tag-btn" data-query="SAE">SAE</button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import Fuse from 'fuse.js';
+  
+  // Search index injected at build time
+  const searchIndex = JSON.parse(document.getElementById('search-data')?.textContent || '[]');
+  
+  const fuse = new Fuse(searchIndex, {
+    keys: [
+      { name: 'title', weight: 0.4 },
+      { name: 'description', weight: 0.3 },
+      { name: 'content', weight: 0.2 },
+      { name: 'tags', weight: 0.1 },
+    ],
+    threshold: 0.3,
+    includeScore: true,
+    includeMatches: true,
+  });
+  
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  const stats = document.getElementById('search-stats');
+  const tagButtons = document.querySelectorAll('.tag-btn');
+  
+  // Keyboard shortcut: / to focus
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== input) {
+      e.preventDefault();
+      input.focus();
+    }
+    if (e.key === 'Escape') {
+      input.blur();
+    }
+  });
+  
+  // Tag button clicks
+  tagButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      input.value = btn.dataset.query;
+      performSearch(btn.dataset.query);
+    });
+  });
+  
+  // Search on input
+  let debounceTimer;
+  input.addEventListener('input', (e) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => performSearch(e.target.value), 150);
+  });
+  
+  function performSearch(query) {
+    if (!query.trim()) {
+      results.innerHTML = '<p class="placeholder">Start typing to search...</p>';
+      stats.textContent = '';
+      return;
+    }
+    
+    const searchResults = fuse.search(query);
+    
+    if (searchResults.length === 0) {
+      results.innerHTML = '<p class="no-results">No results found. Try different keywords.</p>';
+      stats.textContent = '';
+      return;
+    }
+    
+    stats.textContent = `${searchResults.length} result${searchResults.length > 1 ? 's' : ''} for "${query}"`;
+    
+    results.innerHTML = searchResults.map(({ item, score }) => `
+      <article class="result-card" style="--relevance: ${1 - (score || 0)}">
+        <a href="/blog/${item.slug}/">
+          <h3>${highlightMatches(item.title, query)}</h3>
+          <p>${item.description}</p>
+          <div class="meta">
+            <time>${item.dateFormatted}</time>
+            ${item.tags?.map(t => `<span class="tag">#${t}</span>`).join('') || ''}
+          </div>
+        </a>
+      </article>
+    `).join('');
+  }
+  
+  function highlightMatches(text, query) {
+    const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+  }
+  
+  function escapeRegex(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  
+  // Focus input on load
+  input.focus();
+</script>
+
+<script type="application/json" id="search-data">
+  {JSON.stringify(searchIndex)}
+</script>
+
+<style>
+  .search-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--accent);
+    text-align: center;
+  }
+  
+  .search-box {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  #search-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  #search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.2);
+  }
+  
+  #search-input::placeholder {
+    color: var(--gray);
+  }
+  
+  .search-hint {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+  
+  .stats {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    min-height: 1.5rem;
+  }
+  
+  .results {
+    margin-bottom: 2rem;
+  }
+  
+  .placeholder, .no-results {
+    text-align: center;
+    color: var(--gray);
+    padding: 3rem 1rem;
+    font-style: italic;
+  }
+  
+  .result-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 4px solid rgba(255, 184, 0, var(--relevance, 0.5));
+  }
+  
+  .result-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(255, 0, 85, 0.1);
+    border-color: var(--red);
+  }
+  
+  .result-card a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .result-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+  
+  .result-card h3 mark {
+    background: rgba(255, 184, 0, 0.3);
+    color: var(--accent);
+    padding: 0 2px;
+    border-radius: 2px;
+  }
+  
+  .result-card p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+  
+  .meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+  
+  .tag {
+    background: rgba(255, 184, 0, 0.15);
+    color: var(--accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+  }
+  
+  .popular-searches {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+  }
+  
+  .popular-searches h3 {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 0.75rem;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .tag-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .tag-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  
+  @media (max-width: 768px) {
+    .search-hint {
+      display: none;
+    }
+    
+    #search-input {
+      font-size: 1rem;
+    }
+  }
+</style>

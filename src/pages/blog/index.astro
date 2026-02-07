@@ -14,7 +14,10 @@ const regular = publishedPosts.filter(p => p !== featured);
 
 <Layout title="Blog | Libertaria" description="Sovereign infrastructure, protocols, and the art of building exits.">
 	<section class="blog-index">
-		<h1>Blog</h1>
+		<div class="header-row">
+			<h1>Blog</h1>
+			<a href="/blog/search/" class="search-link">🔍 Search</a>
+		</div>
 		
 		{featured && (
 			<article class="featured">
@@ -76,9 +79,34 @@ const regular = publishedPosts.filter(p => p !== featured);
 	
 	h1 {
 		font-size: 3rem;
-		margin-bottom: 2rem;
+		margin-bottom: 0;
 		color: var(--accent);
 		text-align: center;
+	}
+	
+	.header-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 2rem;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+	
+	.search-link {
+		background: rgba(255, 184, 0, 0.1);
+		border: 1px solid var(--accent);
+		color: var(--accent);
+		padding: 0.5rem 1rem;
+		border-radius: 6px;
+		text-decoration: none;
+		font-size: 0.9rem;
+		transition: all 0.2s;
+	}
+	
+	.search-link:hover {
+		background: var(--accent);
+		color: var(--bg);
 	}
 	
 	.featured {
@@ -183,6 +211,15 @@ const regular = publishedPosts.filter(p => p !== featured);
 	}
 	
 	@media (max-width: 768px) {
+		.header-row {
+			flex-direction: column;
+			text-align: center;
+		}
+		
+		h1 {
+			font-size: 2rem;
+		}
+		
 		.post-grid {
 			grid-template-columns: 1fr;
 		}
