@@ -1,7 +1,0 @@
-# Cloudflare Pages Redirects
-# Format: source destination [code]
-
-# Day Zero Protocol — various paths
-/DAY_ZERO /DAY_ZERO.html 301
-/Day_Zero /DAY_ZERO.html 301
-/day_zero /DAY_ZERO.html 301
