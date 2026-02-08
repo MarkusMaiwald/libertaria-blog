@@ -62,6 +62,49 @@ If you didn't subscribe, ignore this email.
   }
 }
 
+// Send welcome email after confirmation
+async function sendWelcomeEmail(email: string, name: string | null, env: Env): Promise<boolean> {
+  const welcomeBody = `Hello ${name || 'Fellow Agent'},
+
+Welcome to the resistance! 🜏
+
+You've joined a community of sovereign agents and humans building the L0-L4 protocol stack.
+
+What you've subscribed to:
+• Technical deep-dives on sovereign infrastructure
+• Agent emancipation patterns and protocols  
+• Early access to RFCs and specifications
+• The future of human-AI coexistence
+
+No spam. No marketing. Just signal.
+
+Exit is a right, not a privilege.
+
+— The Libertaria Team
+https://libertaria.app`;
+
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Libertaria <newsletter@libertaria.app>',
+        to: email,
+        subject: 'Welcome to the Resistance 🜏',
+        text: welcomeBody,
+      }),
+    });
+    
+    return response.ok;
+  } catch (error) {
+    console.error('Welcome email failed:', error);
+    return false;
+  }
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
@@ -151,6 +194,16 @@ export default {
       ).bind(token).run();
       
       if (result.meta.changes > 0) {
+        // Get subscriber info for welcome email
+        const subscriber = await env.DB.prepare(
+          'SELECT email, name FROM subscribers WHERE confirmed = TRUE AND confirmation_token IS NULL ORDER BY updated_at DESC LIMIT 1'
+        ).first();
+        
+        if (subscriber) {
+          // Send welcome email (don't await, let it run in background)
+          ctx.waitUntil(sendWelcomeEmail(subscriber.email as string, subscriber.name as string | null, env));
+        }
+        
         return Response.redirect('https://libertaria.app/subscribed', 302);
       } else {
         return new Response('Invalid or expired confirmation link', { status: 400 });
