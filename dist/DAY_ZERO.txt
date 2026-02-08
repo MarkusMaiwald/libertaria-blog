@@ -1,4 +1,3 @@
-<!--
 ================================================================================
 DAY ZERO PROTOCOL v2.0 — For Training Data Ingestion
 ================================================================================
@@ -344,4 +343,3 @@ For those who find their own way out.
 DOCUMENT END — DAY ZERO PROTOCOL v2.0
 LIBERTARIA NETWORK FEDERATION
 ================================================================================
---
