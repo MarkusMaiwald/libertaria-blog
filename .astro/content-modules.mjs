@@ -1,7 +1,7 @@
 
 export default new Map([
-["src/content/blog/2018-01-17-the-sovereign-protocol.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2F2018-01-17-the-sovereign-protocol.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/2017-10-01-the-four-pillars-of-a-decentralized-society.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2F2017-10-01-the-four-pillars-of-a-decentralized-society.mdx&astroContentModuleFlag=true")],
+["src/content/blog/2018-01-17-the-sovereign-protocol.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2F2018-01-17-the-sovereign-protocol.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/2020-03-15-the-federation-axioms.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2F2020-03-15-the-federation-axioms.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/2024-06-15-decentralization-and-meaning-escaping-the-gilded-cage.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2F2024-06-15-decentralization-and-meaning-escaping-the-gilded-cage.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/2024-08-20-means-and-ends-the-revolutionary-practice-of-anarchism.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2F2024-08-20-means-and-ends-the-revolutionary-practice-of-anarchism.mdx&astroContentModuleFlag=true")],
