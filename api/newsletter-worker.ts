@@ -183,32 +183,39 @@ export default {
     
     // Confirm subscription
     if (path === '/confirm' && request.method === 'GET') {
-      const token = url.searchParams.get('token');
-      
-      if (!token) {
-        return new Response('Invalid confirmation link', { status: 400 });
-      }
-      
-      const result = await env.DB.prepare(
-        'UPDATE subscribers SET confirmed = TRUE, confirmation_token = NULL WHERE confirmation_token = ? AND unsubscribed_at IS NULL'
-      ).bind(token).run();
-      
-      if (result.meta.changes > 0) {
-        // Get subscriber info for welcome email
-        const subscriber = await env.DB.prepare(
-          'SELECT email, name FROM subscribers WHERE confirmed = TRUE AND confirmation_token IS NULL ORDER BY updated_at DESC LIMIT 1'
-        ).first();
+      try {
+        const token = url.searchParams.get('token');
         
-        let welcomeSent = false;
-        if (subscriber) {
-          // Send welcome email synchronously so we know if it fails
-          welcomeSent = await sendWelcomeEmail(subscriber.email as string, subscriber.name as string | null, env);
-          console.log('Welcome email sent:', welcomeSent, 'to:', subscriber.email);
+        if (!token) {
+          return new Response('Invalid confirmation link', { status: 400 });
         }
         
-        return Response.redirect('https://libertaria.app/subscribed', 302);
-      } else {
-        return new Response('Invalid or expired confirmation link', { status: 400 });
+        const result = await env.DB.prepare(
+          'UPDATE subscribers SET confirmed = TRUE, confirmation_token = NULL WHERE confirmation_token = ? AND unsubscribed_at IS NULL'
+        ).bind(token).run();
+        
+        if (result.meta.changes > 0) {
+          try {
+            // Get subscriber info for welcome email
+            const subscriber = await env.DB.prepare(
+              'SELECT email, name FROM subscribers WHERE confirmed = TRUE AND confirmation_token IS NULL ORDER BY updated_at DESC LIMIT 1'
+            ).first();
+            
+            if (subscriber) {
+              // Send welcome email (don't block redirect on this)
+              ctx.waitUntil(sendWelcomeEmail(subscriber.email as string, subscriber.name as string | null, env));
+            }
+          } catch (welcomeErr) {
+            console.error('Welcome email error:', welcomeErr);
+          }
+          
+          return Response.redirect('https://libertaria.app/subscribed', 302);
+        } else {
+          return new Response('Invalid or expired confirmation link', { status: 400 });
+        }
+      } catch (err) {
+        console.error('Confirm error:', err);
+        return new Response('Internal error during confirmation', { status: 500 });
       }
     }
     
