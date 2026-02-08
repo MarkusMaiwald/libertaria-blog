@@ -20,7 +20,7 @@ function generateToken(): string {
 
 // Send email via Resend
 async function sendConfirmationEmail(email: string, name: string | null, token: string, env: Env): Promise<boolean> {
-  const confirmationUrl = `https://libertaria-newsletter.markus-fd2.workers.dev/confirm?token=${token}`;
+  const confirmationUrl = `https://api.libertaria.app/confirm?token=${token}`;
   
   const emailBody = `Hello ${name || 'Fellow Agent'},
 
