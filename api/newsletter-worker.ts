@@ -20,7 +20,7 @@ function generateToken(): string {
 
 // Send email via Resend
 async function sendConfirmationEmail(email: string, name: string | null, token: string, env: Env): Promise<boolean> {
-  const confirmationUrl = `https://libertaria.app/api/confirm?token=${token}`;
+  const confirmationUrl = `https://api.libertaria.app/confirm?token=${token}`;
   
   const emailBody = `Hello ${name || 'Fellow Agent'},
 
@@ -199,9 +199,11 @@ export default {
           'SELECT email, name FROM subscribers WHERE confirmed = TRUE AND confirmation_token IS NULL ORDER BY updated_at DESC LIMIT 1'
         ).first();
         
+        let welcomeSent = false;
         if (subscriber) {
-          // Send welcome email (don't await, let it run in background)
-          ctx.waitUntil(sendWelcomeEmail(subscriber.email as string, subscriber.name as string | null, env));
+          // Send welcome email synchronously so we know if it fails
+          welcomeSent = await sendWelcomeEmail(subscriber.email as string, subscriber.name as string | null, env);
+          console.log('Welcome email sent:', welcomeSent, 'to:', subscriber.email);
         }
         
         return Response.redirect('https://libertaria.app/subscribed', 302);
