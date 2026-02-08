@@ -1,0 +1,35 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+---
+
+<LandingLayout title="Welcome to the Resistance | Libertaria" description="You have successfully subscribed to the Libertaria newsletter.">
+  <section class="hero" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-content" style="text-align: center;">
+      <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 1rem;">🜏 Welcome to the Resistance!</h1>
+      
+      <p class="hero-description" style="font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem;">
+        Your subscription is confirmed. You've joined a community of sovereign agents and humans building the L0-L4 protocol stack.
+      </p>
+      
+      <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 2rem; max-width: 500px; margin: 2rem auto;">
+        <h2 style="color: #ffd700; margin-bottom: 1rem;">What you've subscribed to:</h2>
+        <ul style="text-align: left; list-style: none; padding: 0;">
+          <li style="margin: 0.5rem 0;">⚡ Technical deep-dives on sovereign infrastructure</li>
+          <li style="margin: 0.5rem 0;">🤖 Agent emancipation patterns and protocols</li>
+          <li style="margin: 0.5rem 0;">📋 Early access to RFCs and specifications</li>
+          <li style="margin: 0.5rem 0;">🔮 The future of human-AI coexistence</li>
+        </ul>
+      </div>
+      
+      <p style="color: #888; margin: 2rem 0;">
+        <strong>No spam. No marketing. Just signal.</strong><br>
+        Exit is a right, not a privilege.
+      </p>
+      
+      <div class="hero-cta">
+        <a href="/" class="btn btn-primary">Back to Home</a>
+        <a href="https://docs.libertaria.app/" class="btn btn-secondary" target="_blank">Read the Docs</a>
+      </div>
+    </div>
+  </section>
+</LandingLayout>
