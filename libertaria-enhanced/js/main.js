@@ -249,7 +249,7 @@ function initNewsletter() {
     
     try {
       // Call Worker API
-      const response = await fetch('https://libertaria.app/api/subscribe', {
+      const response = await fetch('https://api.libertaria.app/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
