@@ -248,8 +248,8 @@ function initNewsletter() {
     btn.disabled = true;
     
     try {
-      // Call Worker API
-      const response = await fetch('https://api.libertaria.app/subscribe', {
+      // Call Worker API (workers.dev domain)
+      const response = await fetch('https://libertaria-newsletter.markus-fd2.workers.dev/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

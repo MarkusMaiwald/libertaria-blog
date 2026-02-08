@@ -13,119 +13,17 @@ function initReadingProgress() {
   });
 }
 
-// Navbar Scroll Effect with Progressive Blur
+// Navbar Scroll Effect
 function initNavbarScroll() {
   const navbar = document.querySelector('.navbar');
   if (!navbar) return;
 
-  // Use requestAnimationFrame for smooth performance
-  let ticking = false;
-
-  function updateNavbar() {
-    const scrollY = window.scrollY;
-
-    if (scrollY > 50) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
-
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateNavbar);
-      ticking = true;
-    }
-  });
-
-  // Initial check
-  updateNavbar();
-}
-
-// Active Navigation Indicator
-function initActiveNavigation() {
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const sections = document.querySelectorAll('section[id]');
-
-  if (!navLinks.length || !sections.length) return;
-
-  function setActiveNav() {
-    const scrollPos = window.scrollY + 100; // Offset for navbar height
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        navLinks.forEach(link => {
-          link.removeAttribute('aria-current');
-          link.classList.remove('active');
-
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.setAttribute('aria-current', 'page');
-            link.classList.add('active');
-          }
-        });
-      }
-    });
-
-    // Handle top of page (Home)
-    if (scrollPos < 100) {
-      navLinks.forEach(link => {
-        link.removeAttribute('aria-current');
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#home') {
-          link.setAttribute('aria-current', 'page');
-          link.classList.add('active');
-        }
-      });
-    }
-  }
-
-  // Use requestAnimationFrame for smooth updates
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        setActiveNav();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
-  // Set initial active state
-  setActiveNav();
-
-  // Handle click events for smooth scroll with active state
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-
-      // Only handle internal anchor links
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-
-          // Update active state immediately for better UX
-          navLinks.forEach(l => {
-            l.removeAttribute('aria-current');
-            l.classList.remove('active');
-          });
-          link.setAttribute('aria-current', 'page');
-          link.classList.add('active');
-        }
-      }
-    });
   });
 }
 
@@ -329,26 +227,71 @@ function initNewsletter() {
   const form = document.getElementById('newsletter-form');
   if (!form) return;
 
-  // Add aria-live region for success announcements
-  form.setAttribute('aria-live', 'polite');
-
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = form.querySelector('input[type="email"]').value;
+    const btn = form.querySelector('button');
+    const originalText = btn.textContent;
     
-    if (email) {
-      // Show success message
-      const btn = form.querySelector('button');
-      const originalText = btn.textContent;
-      btn.innerHTML = '✓ Subscribed!';
-      btn.classList.add('btn-success');
-      btn.classList.remove('btn-red');
+    if (!email || !email.includes('@')) {
+      btn.textContent = 'Invalid email';
+      btn.style.background = '#ff1a1a';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+      }, 2000);
+      return;
+    }
+    
+    // Show loading state
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    
+    try {
+      // Call Worker API (workers.dev domain)
+      const response = await fetch('https://libertaria-newsletter.markus-fd2.workers.dev/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          source: 'website'
+        }),
+      });
+      
+      if (response.ok) {
+        btn.textContent = 'Check your email!';
+        btn.classList.add('btn-primary');
+        btn.classList.remove('btn-red');
+        form.reset();
+        
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-red');
+        }, 5000);
+      } else {
+        const error = await response.text();
+        console.error('Subscription failed:', error);
+        btn.textContent = 'Error. Try again.';
+        btn.style.background = '#ff1a1a';
+        
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 3000);
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      btn.textContent = 'Network error';
+      btn.style.background = '#ff1a1a';
       
       setTimeout(() => {
         btn.textContent = originalText;
-        btn.classList.remove('btn-success');
-        btn.classList.add('btn-red');
-        form.reset();
+        btn.style.background = '';
+        btn.disabled = false;
       }, 3000);
     }
   });
@@ -436,7 +379,6 @@ function initTypingEffect() {
 document.addEventListener('DOMContentLoaded', () => {
   initReadingProgress();
   initNavbarScroll();
-  initActiveNavigation();
   initScrollReveal();
   initBlogFilter();
   initStackCards();
