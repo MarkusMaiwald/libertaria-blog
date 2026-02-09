@@ -227,71 +227,23 @@ function initNewsletter() {
   const form = document.getElementById('newsletter-form');
   if (!form) return;
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = form.querySelector('input[type="email"]').value;
-    const btn = form.querySelector('button');
-    const originalText = btn.textContent;
     
-    if (!email || !email.includes('@')) {
-      btn.textContent = 'Invalid email';
-      btn.style.background = '#ff1a1a';
+    if (email) {
+      // Show success message
+      const btn = form.querySelector('button');
+      const originalText = btn.textContent;
+      btn.textContent = 'Subscribed!';
+      btn.classList.add('btn-primary');
+      btn.classList.remove('btn-red');
+      
       setTimeout(() => {
         btn.textContent = originalText;
-        btn.style.background = '';
-      }, 2000);
-      return;
-    }
-    
-    // Show loading state
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    
-    try {
-      // Call Worker API (workers.dev domain)
-      const response = await fetch('https://libertaria-newsletter.markus-fd2.workers.dev/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          source: 'website'
-        }),
-      });
-      
-      if (response.ok) {
-        btn.textContent = 'Check your email!';
-        btn.classList.add('btn-primary');
-        btn.classList.remove('btn-red');
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-red');
         form.reset();
-        
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.classList.remove('btn-primary');
-          btn.classList.add('btn-red');
-        }, 5000);
-      } else {
-        const error = await response.text();
-        console.error('Subscription failed:', error);
-        btn.textContent = 'Error. Try again.';
-        btn.style.background = '#ff1a1a';
-        
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = '';
-          btn.disabled = false;
-        }, 3000);
-      }
-    } catch (error) {
-      console.error('Network error:', error);
-      btn.textContent = 'Network error';
-      btn.style.background = '#ff1a1a';
-      
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
       }, 3000);
     }
   });
